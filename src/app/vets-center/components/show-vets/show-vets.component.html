@@ -1,0 +1,35 @@
+<div class="background">
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="main pt-5">
+          <!-- Another variation with a button -->
+          <div class="input-group">
+            <input [(ngModel)]="searchText" type="text" class="form-control" style="width: 600px;" >
+            <div class="input-group-append">
+                <button class="btn btn-secondary" type="button" style="background-color: #f26522; border-color:#f26522 ">
+                <i class="fa fa-search"></i>
+                </button>
+            </div>
+          </div>
+      </div>
+        <h1 class="hero-title align-text-start">Explore Our Centers</h1>
+        <p class="hero-description">All Your Bets in our safe Hand.</p>
+        <a (click)="scrollToSection()" class="hero-button">Start Exploring</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <h1 class="text-center my-3" id="here">Our Trusted Centers</h1>
+    <hr />
+    <div class="row row-cols-1 row-cols-md-2 g-4 mt-5">
+      <div class="col" *ngFor="let pet of approvedVets |search:searchText">
+      
+        <h1 class="fs-2 text-center">{{ pet.name }}</h1>
+        <app-veterinary-card [pet]="pet"></app-veterinary-card>
+   
+      </div>
+    </div>
+  </div>
+</div>

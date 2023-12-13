@@ -1,0 +1,246 @@
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Bootstrap Client Testimonial Slider</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<style type="text/css">
+body {
+	font-family: "Open Sans", sans-serif;
+}
+h2 {
+	color: #000;
+	font-size: 26px;
+	font-weight: 300;
+	position: relative;
+	margin: 0 0 50px 0;
+	text-transform: uppercase;
+	display: inline-block;
+}
+h2::after {
+	content: "";
+	width: 50%;
+	position: absolute;
+	height: 4px;
+	border-radius: 1px;
+	background: #ff5555;
+	left: 0;
+	bottom: -20px;
+}
+.carousel {
+	margin: 50px auto;
+}
+.carousel .carousel-item {
+	color: #999;
+	overflow: hidden;
+    min-height: 120px;
+	font-size: 13px;
+}
+.carousel .media {
+	position: relative;
+	padding: 0 0 0 20px;
+	margin-left: 20px;
+}
+.carousel .media img {
+	width: 75px;
+	height: 75px;
+	display: block;
+	border-radius: 50%;
+	box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    border: 2px solid #fff;
+}
+.carousel .testimonial {
+    color: #fff;
+    position: relative;    
+    background: #9b9b9b;
+	padding: 15px;
+	margin: 0 0 20px 20px;
+}
+.carousel .testimonial::before, .carousel .testimonial::after {
+	content: "";
+	display: inline-block;
+	position: absolute;
+	left: 0;
+	bottom: -20px;
+}
+.carousel .testimonial::before {
+    width: 20px;
+    height: 20px;
+	background: #9b9b9b;
+	box-shadow: inset 12px 0 13px rgba(0,0,0,0.5);
+}
+.carousel .testimonial::after {
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-bottom-color: #fff;
+    border-left-color: #fff;
+}
+.carousel .carousel-item .row > div:first-child .testimonial {
+	margin: 0 20px 20px 0;
+}
+.carousel .carousel-item .row > div:first-child .media {
+	margin-left: 0;
+}
+.carousel .testimonial p {
+	text-indent: 40px;
+    line-height: 21px;
+	margin: 0;
+}
+.carousel .testimonial p::before {
+	content: "\201D";
+  	font-family: Arial,sans-serif;
+    color: #fff;
+    font-weight: bold;
+    font-size: 68px;
+    line-height: 70px;
+    position: absolute;
+    left: -25px;
+    top: 0;
+}
+.carousel .overview {
+	padding: 3px 0 0 15px;
+}
+.carousel .overview .details {
+	padding: 5px 0 8px;
+}
+.carousel .overview b {
+	text-transform: uppercase;
+	color: #ff5555;
+}
+.carousel-control-prev, .carousel-control-next {
+	width: 30px;
+	height: 30px;
+    background: #666;
+    text-shadow: none;
+	top: 4px;
+}
+.carousel-control-prev i, .carousel-control-next i {
+	font-size: 16px;
+}
+.carousel-control-prev {
+	left: auto;
+	right: 40px;
+}
+.carousel-control-next {
+	left: auto;
+}
+.carousel-indicators {
+	bottom: -80px;
+}
+.carousel-indicators li, .carousel-indicators li.active {
+	width: 17px;
+    height: 17px;
+	border-radius: 0;
+	margin: 1px 5px;
+  	box-sizing: border-box;
+}
+.carousel-indicators li {	
+    background: #e2e2e2;
+    border: 4px solid #fff;
+}
+.carousel-indicators li.active {
+	color: #fff;
+    background: #c3a689;
+    border: 5px double;    
+}
+.star-rating li {
+	padding: 0 2px;
+}
+.star-rating i {
+	font-size: 14px;
+	color: #ffdc12;
+}
+</style>
+</head>
+<!-- 
+<div class="container-xxl  " style="background-color: #c3a6894d; border-radius: 10px;">
+
+	<div class="row mb-5 p-3">
+		<div class="col-sm-12">			
+			<div id="myCarousel" class="carousel slide" data-ride="carousel" >
+				<h2>Customer <b>Testimonials</b></h2>
+				<ol class="carousel-indicators">
+					<li data-target="#myCarousel" *ngFor="let feedback of Allfeedbacks ;let index = index" data-slide-to="0" class="active"></li>
+
+				</ol>   
+				<div class="carousel-inner"  >
+					<div class="carousel-item " *ngFor="let feedback of Allfeedbacks;let index = index;let isFirst = first" [ngClass]="{active:isFirst}"  >
+						<div class="row row-cols-1 "  >
+							<div class="col-sm-6 "  >
+								<div class="testimonial ">
+									<p>{{feedback.feedback}}</p>
+								</div>
+                <div class="media">
+									<img src="data:image/png;base64,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" class="mr-3" alt="">
+																		<div class="media-body">
+										<div class="overview">
+											<div class="name"><b>{{feedback.user.name}}</b></div>
+											<div class="details">{{feedback.user.role}}</div>
+											
+										</div>										
+									</div>
+								</div>
+							</div>
+							
+						</div>			
+					</div>
+				</div>
+				<a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+					<i class="fa fa-chevron-left"></i>
+				</a>
+				<a class="carousel-control-next" href="#myCarousel" data-slide="next">
+					<i class="fa fa-chevron-right"></i>
+				</a>
+			</div>
+		</div>
+
+</div>
+</div> -->
+<div class="container-fluid mt-5   " style="background-color: #c3a6894d; border-radius: 10px;">
+	<div class="row mb-5 p-3" style="width: 1300px;">
+		<div class="col-sm-12">			
+<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+		
+				<h2>Customer <b> Feedbacks</b></h2>
+	<ol class="carousel-indicators">
+	  <li data-target="#carouselExampleCaptions"  *ngFor="let feedback of confirmedFeedbacks;let index = index" [attr.data-slide-to]="index"></li>
+	</ol>
+	<div class="carousel-inner">
+	  <div class="carousel-item" *ngFor="let feedback of Allfeedbacks;let index = index;let isFirst = first" [ngClass]="{active:isFirst}">
+		<div class="row justify-content-center " >
+			<div class="col-sm-6 p-5 border border-dark rounded" style="background-color:#c3a68967 ;"  >
+				<div class="testimonial ">
+					<p [textContent]="feedback.feedback"></p>
+				</div>
+				<div class="media">
+					<img src="data:image/png;base64,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" class="mr-3" alt="">
+						<div class="media-body">
+							<div class="overview">
+							<div class="name" style="font-size: larger;"><b [textContent]="feedback.user.name"></b></div>
+							<div class="text-black"><p [textContent]="feedback.user.role"></p></div>
+							
+						</div>										
+					
+				</div>
+			</div>
+		</div>
+		</div>
+	  </div>
+	</div>
+	<a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+	  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+	  <span class="sr-only">Previous</span>
+	</a>
+	<a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+	  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+	  <span class="sr-only">Next</span>
+	</a>
+</div>
+		</div>
+	</div>
+</div>

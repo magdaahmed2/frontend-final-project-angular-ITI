@@ -1,0 +1,85 @@
+/* Style for the card */
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Adds a shadow */
+    transition: 0.3s; /* Smooth transition when hovering */
+    border-radius: 10px; /* Rounds the corners */
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); /* Enhances shadow on hover */
+}
+
+.pro-img-box {
+    position: relative;
+    overflow: hidden;
+}
+
+.pro-img-box img {
+    width: 100%; /* Ensures image fills its container */
+    display: block;
+    transition: transform 0.5s ease; /* Smooth zoom effect */
+}
+
+.pro-img-box:hover img {
+    transform: scale(1.1); /* Zoom effect on hover */
+}
+
+.adtocart {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #fff;
+    border-radius: 50%;
+    padding: 8px;
+    transition: all 0.3s ease;
+}
+
+.adtocart:hover {
+    background: #f8f9fa;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.pro-title {
+    color: #333;
+    text-decoration: none;
+}
+
+.price {
+    font-weight: bold;
+}
+
+/* Pagination styling */
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+
+.pagination li {
+    margin: 0 5px;
+}
+
+.pagination a {
+    color: #333;
+    text-decoration: none;
+}
+
+.pagination a:hover {
+    text-decoration: underline;
+}
+
+.container-fluid {
+    background-image: url('/assets/bg.png');
+    /* height: 80vh; */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    background-repeat: repeat-y;
+  }

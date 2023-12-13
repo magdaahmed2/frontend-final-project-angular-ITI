@@ -1,0 +1,410 @@
+<div class="container-fluid">
+  <div class="container my-3">
+    <div class="row">
+      <form
+        [formGroup]="vetCenterFormstore"
+        (ngSubmit)="onAddVet()"
+        class="professional-form"
+      >
+        <!-- Veterinary Center Name -->
+        <h1 class="text-center text-success">Add Your Veterinary Center</h1>
+        <hr />
+        <div class="form-group">
+          <label for="name">Veterinary Center Name</label>
+          <input
+            name="name"
+            type="text"
+            class="form-control"
+            id="name"
+            formControlName="name"
+          />
+          <!-- start name error handle -->
+          <div
+            *ngIf="
+              vetCenterFormstore.controls['name'].touched &&
+              vetCenterFormstore.controls['name'].invalid
+            "
+            id="name_help"
+            class="text-danger form-text"
+          >
+            <small
+              *ngIf="vetCenterFormstore.controls['name'].errors?.['required']"
+            >
+              This field is required
+            </small>
+            <small *ngIf="vetCenterFormstore.controls['name'].errors?.['min']">
+              you must enter a name over 2 characters
+            </small>
+          </div>
+          <!-- end name error handle -->
+        </div>
+
+        <!-- Location Information -->
+        <div class="form-group">
+          <label for="street_address">Street Address</label>
+          <input
+            name="street_address"
+            type="text"
+            class="form-control"
+            id="street_address"
+            formControlName="street_address"
+          />
+
+          <div
+            *ngIf="
+              vetCenterFormstore.controls['street_address'].touched &&
+              vetCenterFormstore.controls['street_address'].invalid
+            "
+            id="name_help"
+            class="text-danger form-text"
+          >
+            <small
+              *ngIf="vetCenterFormstore.controls['street_address'].errors?.['required']"
+            >
+              this field is required
+            </small>
+          </div>
+        </div>
+        <!-- governorate -->
+        <div class="mb-3">
+          <label for="governorate" class="form-label governorate"
+            >governorate</label
+          >
+          <select
+            name="governorate"
+            class="form-select"
+            id="location"
+            formControlName="governorate"
+          >
+            <option value="" disabled selected>Select a governorate</option>
+            <option *ngFor="let governorate of cities" [value]="governorate">
+              {{ governorate }}
+            </option>
+          </select>
+        </div>
+        <!-- ... Logo ... -->
+        <div class="form-group">
+          <label for="license">Logo</label>
+          <div
+            class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm"
+          >
+            <input
+              name="logo"
+              id="upload"
+              type="file"
+              (change)="get_imag_logo($event)"
+              class="form-control border-0"
+              formControlName="logo"
+            />
+            <label
+              id="upload-label"
+              for="logo"
+              class="font-weight-light text-muted"
+              >Choose file</label
+            >
+            <div class="input-group-append">
+              <label for="logo" class="btn btn-light m-0 rounded-pill px-4">
+                <i class="fa fa-cloud-upload mr-2 text-muted"></i
+                ><small class="text-uppercase font-weight-bold text-muted"
+                  >Choose file</small
+                ></label
+              >
+            </div>
+          </div>
+          <div class="image-area mt-4">
+            <img
+              id="imageResult"
+              src="{{ logoBase64 }}"
+              alt=""
+              class="img-fluid rounded shadow-sm mx-auto d-block"
+            />
+          </div>
+          <div
+            *ngIf="
+              vetCenterFormstore.controls['logo'].touched &&
+              vetCenterFormstore.controls['logo'].invalid
+            "
+            id="name_help"
+            class="text-danger form-text"
+          >
+            <small
+              *ngIf="vetCenterFormstore.controls['logo'].errors?.['required']"
+            >
+              this field is required
+            </small>
+          </div>
+        </div>
+        <!-- About the Center -->
+        <div class="form-group mt-3">
+          <label for="about">About the Center</label>
+          <textarea
+            name="about"
+            class="form-control"
+            id="about"
+            formControlName="about"
+            rows="4"
+          ></textarea>
+          <div
+            *ngIf="
+              vetCenterFormstore.controls['about'].touched &&
+              vetCenterFormstore.controls['about'].invalid
+            "
+            id="name_help"
+            class="text-danger form-text"
+          >
+            <small
+              *ngIf="vetCenterFormstore.controls['about'].errors?.['required']"
+            >
+              this field is required
+            </small>
+          </div>
+        </div>
+        <!-- License -->
+        <div class="form-group">
+          <label for="license">License</label>
+          <div
+            class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm"
+          >
+            <input
+              name="license"
+              id="upload"
+              type="file"
+              (change)="get_image_license($event)"
+              class="form-control border-0"
+              formControlName="license"
+            />
+            <label
+              id="upload-label"
+              for="license"
+              class="font-weight-light text-muted"
+              >Choose file</label
+            >
+            <div class="input-group-append">
+              <label for="license" class="btn btn-light m-0 rounded-pill px-4">
+                <i class="fa fa-cloud-upload mr-2 text-muted"></i
+                ><small class="text-uppercase font-weight-bold text-muted"
+                  >Choose file</small
+                ></label
+              >
+            </div>
+          </div>
+          <div class="image-area mt-4">
+            <img
+              name="license"
+              id="imageResult"
+              src="{{ licenseBase64 }}"
+              alt=""
+              class="img-fluid rounded shadow-sm mx-auto d-block"
+            />
+          </div>
+          <div
+            *ngIf="
+              vetCenterFormstore.controls['license'].touched &&
+              vetCenterFormstore.controls['license'].invalid
+            "
+            id="name_help"
+            class="text-danger form-text"
+          >
+            <small
+              *ngIf="vetCenterFormstore.controls['license'].errors?.['required']"
+            >
+              this field is required
+            </small>
+          </div>
+        </div>
+        <!-- Operating open Hours -->
+        <div class="form-group">
+          <label for="open_at">Operating open Hours</label>
+          <input
+            name="open_at"
+            type="text"
+            class="form-control"
+            id="open_at"
+            required
+            formControlName="open_at"
+          />
+          <small class="text-danger"
+            >Please enter the date in this form HH:MM AM/PM</small
+          >
+          <div
+            *ngIf="
+              vetCenterFormstore.controls['open_at'].touched &&
+              vetCenterFormstore.controls['open_at'].invalid
+            "
+            id="name_help"
+            class="text-danger form-text"
+          >
+            <small
+              *ngIf="vetCenterFormstore.controls['open_at'].errors?.['required']"
+            >
+              this field is required
+            </small>
+          </div>
+        </div>
+
+        <!-- Operating close Hours -->
+        <div class="form-group">
+          <label for="close_at">Operating close Hours</label>
+          <input
+            name="close_at"
+            id="appt-time"
+            type="text"
+            name="appt-time"
+            class="form-control"
+            id="close_at"
+            formControlName="close_at"
+          />
+          <small class="text-danger"
+            >Please enter the date in this form HH:MM AM/PM</small
+          >
+          <div
+            *ngIf="
+              vetCenterFormstore.controls['close_at'].touched &&
+              vetCenterFormstore.controls['close_at'].invalid
+            "
+            id="name_help"
+            class="text-danger form-text"
+          >
+            <small
+              *ngIf="vetCenterFormstore.controls['close_at'].errors?.['required']"
+            >
+              this field is required
+            </small>
+          </div>
+        </div>
+        <!-- Tax Record -->
+        <div class="form-group">
+          <label for="tax_record">Tax Record</label>
+          <div
+            class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm"
+          >
+            <input
+              name="tax_record"
+              id="upload"
+              type="file"
+              (change)="get_image_tax($event)"
+              class="form-control border-0"
+              formControlName="tax_record"
+            />
+            <label
+              id="upload-label"
+              for="tax_record"
+              class="font-weight-light text-muted"
+              >Choose file</label
+            >
+            <div class="input-group-append">
+              <label
+                for="tax_record"
+                class="btn btn-light m-0 rounded-pill px-4"
+              >
+                <i class="fa fa-cloud-upload mr-2 text-muted"></i
+                ><small class="text-uppercase font-weight-bold text-muted"
+                  >Choose file</small
+                ></label
+              >
+            </div>
+          </div>
+          <div class="image-area mt-4">
+            <img
+              name="tax_record"
+              id="imageResult"
+              src="{{ taxBase64 }}"
+              alt=""
+              class="img-fluid rounded shadow-sm mx-auto d-block"
+            />
+          </div>
+          <div
+            *ngIf="
+              vetCenterFormstore.controls['tax_record'].touched &&
+              vetCenterFormstore.controls['tax_record'].invalid
+            "
+            id="name_help"
+            class="text-danger form-text"
+          >
+            <small
+              *ngIf="vetCenterFormstore.controls['tax_record'].errors?.['required']"
+            >
+              this field is required
+            </small>
+          </div>
+        </div>
+
+        <!-- Commercial Record -->
+        <div class="form-group">
+          <label for="commercial_record">Commercial Record</label>
+          <div
+            class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm"
+          >
+            <input
+              name="commercial_record"
+              id="upload"
+              type="file"
+              (change)="get_image_commrec($event)"
+              class="form-control border-0"
+              formControlName="commercial_record"
+            />
+            <label
+              id="upload-label"
+              for="commercial_record"
+              class="font-weight-light text-muted"
+              >Choose file</label
+            >
+            <div class="input-group-append">
+              <label
+                for="commercial_record"
+                class="btn btn-light m-0 rounded-pill px-4"
+              >
+                <i class="fa fa-cloud-upload mr-2 text-muted"></i
+                ><small class="text-uppercase font-weight-bold text-muted"
+                  >Choose file</small
+                ></label
+              >
+            </div>
+          </div>
+          <div class="image-area mt-4">
+            <img
+              name="commercial_record"
+              id="imageResult"
+              src="{{ commercialBasde64 }}"
+              alt=""
+              class="img-fluid rounded shadow-sm mx-auto d-block"
+            />
+          </div>
+          <div
+            *ngIf="
+              vetCenterFormstore.controls['commercial_record'].touched &&
+              vetCenterFormstore.controls['commercial_record'].invalid
+            "
+            id="name_help"
+            class="text-danger form-text"
+          >
+            <small
+              *ngIf="vetCenterFormstore.controls['commercial_record'].errors?.['required']"
+            >
+              this field is required
+            </small>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            routerLink="/user-vet"
+          >
+            Skip now
+          </button>
+          <!-- Submit Button -->
+
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="vetCenterFormstore.invalid"
+          >
+            Save changes
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

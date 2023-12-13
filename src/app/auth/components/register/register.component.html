@@ -1,0 +1,174 @@
+<section class="">
+  <div class="container py-5 ">
+    <div class="row d-flex justify-content-center align-items-center ">
+      <div class="col-xl-10">
+        <div class="card rounded-3 text-black" style="background-color: #ffe1c9b4;">
+          <div class="row g-0">
+            <div class="col-lg-6" >
+              <div class="card-body p-md-5 mx-md-4">
+                <div class="text-center">
+                  <img
+                    src="./assets/logof.png"
+                    style="width: 210px; margin-bottom: 25px; "
+                    alt="logo"
+                  />
+                  <h4 class="mt-1 mb-3 pb-1">User Registration</h4>
+                </div>
+
+<form [formGroup]="regiseruser" (ngSubmit)="submitForm()">
+  <div class="mb-3">
+    <label for="name_control" class="form-label">Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="name_control"
+      aria-describedby="name_help"
+      formControlName="name"
+    />
+    <div
+      *ngIf="
+      regiseruser.controls['name'].touched &&
+      regiseruser.controls['name'].invalid
+      "
+      id="name_help"
+      class="text-danger form-text"
+    >
+      <small *ngIf="regiseruser.controls['name'].errors?.['required']">
+        this field is required
+      </small>
+      <small *ngIf="regiseruser.controls['name'].errors?.['minlength']">
+        Min. length is 2
+      </small>
+    </div>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <label for="email" class="form-label"
+                    >email</label
+                  >
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    aria-describedby="description_help"
+                    rows="5"
+                    formControlName="email"
+                  >
+                  <div
+                    *ngIf="
+                    regiseruser.controls['email'].touched &&
+                    regiseruser.controls['email'].invalid
+                    "
+                    id="email"
+                    class="text-danger form-text"
+                  >
+                    <small *ngIf="regiseruser.controls['email'].errors?.['required']">
+                      this field is required
+                    </small>
+                    <small *ngIf="regiseruser.controls['email'].errors?.['pattern']">
+                      Please enter a valid email format.
+                    </small>
+                    
+                  </div>
+                  <div *ngIf="error" style="color: black;">
+                    <p class="text-danger form-text" style="display: inline;">{{ error }}</p>
+                    <a href="login" style="display: inline; color: black;">Want to login?</a>
+                  </div>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <label for="password" class="form-label">password</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="password"
+                      aria-describedby="description_help"
+                      rows="5"
+                      formControlName="password"
+                    />
+                    <div
+                      *ngIf="
+                        regiseruser.controls['password'].touched &&
+                        regiseruser.controls['password'].invalid
+                      "
+                      id="password"
+                      class="text-danger form-text"
+                    >
+                      <small
+                        *ngIf="regiseruser.controls['password'].errors?.['required']"
+                      >
+                        this field is required
+                      </small>
+                      <small
+                        *ngIf="regiseruser.controls['password'].errors?.['password']"
+                      >
+                        password must be more than 8 character
+                      </small>
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="phone" class="form-label">Phone</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="phone"
+                      aria-describedby="phone"
+                      formControlName="phone"
+                    />
+                    <div
+                      *ngIf="
+                        regiseruser.controls['phone'].touched &&
+                        regiseruser.controls['phone'].invalid
+                      "
+                      id="phone"
+                      class="text-danger form-text"
+                    >
+                      <small
+                        *ngIf="regiseruser.controls['phone'].errors?.['required']"
+                      >
+                        Phone number is required
+                      </small>
+                      <small
+                        *ngIf="regiseruser.controls['phone'].errors?.['minlength']"
+                      >
+                        Phone number should be at least 11 digits long
+                      </small>
+                      <small
+                        *ngIf="regiseruser.controls['phone'].errors?.['pattern']"
+                      >
+                        Phone number should start with '0' and be 11 digits long
+                      </small>
+                    </div>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <button
+                      class="btn btn-success btn-block fa-lg p-2   mb-3"
+                      type="submit"
+                      style="width: 100% ;"
+                      [disabled]="regiseruser.invalid"
+                    >
+                      Register</button
+                    ><br />
+                  </div>
+                  <p class="mb-0 me-2 fw-bold">have an account ?</p>
+                  <button type="submit" class="btn btn-primary mt-2">
+                    <a class="text-white" href="login">Sign In</a>
+                  </button>
+                </form>
+              </div>
+            </div>
+            <div
+              class="col-lg-6 d-flex align-items-center gradient-custom-2"
+              style="
+                background-image: url('https://images.unsplash.com/photo-1569591159212-b02ea8a9f239?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8NHwyMDEwMDl8fGVufDB8fHx8fA%3D%3D');
+                background-repeat: no-repeat;
+                background-size: cover;
+              "
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

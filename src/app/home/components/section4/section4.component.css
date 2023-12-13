@@ -1,0 +1,826 @@
+ /*
+ @import url("https://fonts.googleapis.com/css2?family=Grape+Nuts&display=swap");
+*, *::before, *::after {
+  padding: 0;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Grape Nuts", cursive;
+  background-color: #eee;
+  text-align: center;
+  padding: 4em 1em;
+}
+
+.gallery {
+  display: grid;
+  width: 100%;
+  max-width: 1002px;
+  grid-gap: 50px;
+  grid-template-columns: repeat(auto-fit, 300px);
+  grid-template-rows: auto;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+figure {
+  width: 300px;
+  perspective: 900px;
+}
+figure:nth-child(1) {
+  --imageUrl: url("https://static.vecteezy.com/system/resources/previews/026/501/125/original/illustration-of-pet-for-sale-icon-in-dark-color-and-white-background-vector.jpg");
+}
+figure:nth-child(2) {
+  --imageUrl: url("https://www.shutterstock.com/image-vector/dogs-allowed-supermarket-petshop-black-250nw-1669451863.jpg");
+}
+figure:nth-child(3) {
+  --imageUrl: url("https://static.vecteezy.com/system/resources/thumbnails/010/326/555/small_2x/cat-talk-adopt-me-line-icon-illustration-vector.jpg");
+}
+figure:nth-child(4) {
+  --imageUrl: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGllLbMnrRmiy_kiKCeuR9vMQx4BFfhl-rWw&usqp=CAU");
+}
+figure:nth-child(5) {
+  --imageUrl: url("https://static.vecteezy.com/system/resources/previews/008/128/670/non_2x/veterinary-medicine-hospital-or-pet-shop-for-animals-vector.jpg");
+}
+figure:nth-child(6) {
+  --imageUrl: url("https://t4.ftcdn.net/jpg/04/79/83/59/360_F_479835987_hCtbDjghmZHkRyvsdUG82Hs2pbsgVlkr.jpg");
+}
+figure img {
+  width: 100%;
+}
+
+.imageRoll {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  background-color: #fff;
+  box-shadow: 1em 0.5em 2em #1234, 0 0 5em #1234 inset;
+}
+.imageRoll i {
+  position: absolute;
+  left: calc(100% - 1px);
+  width: 6px;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform-origin: left;
+  transition: transform 0.6s var(--delay, 0s) ease-in-out;
+  background-image: linear-gradient(#0003, #0000 5% 95%, #0003), var(--imageUrl, "");
+  background-position-x: calc(var(--bpx, 0) + 1px);
+  background-size: 300px 300px;
+}
+.imageRoll > i {
+  left: 0;
+  width: 5px;
+}
+.imageRoll:hover i {
+  transform: rotateY(var(--angle, 0deg)) skewY(var(--skew, 0deg));
+  transition-delay: var(--delay2, 0s);
+}
+.imageRoll > i {
+  --bpx: 0px;
+  --delay: 0s;
+  --delay2: 0.6s;
+  --angle: -10deg;
+  --skew: 0deg;
+}
+.imageRoll > i > i {
+  --bpx: -5px;
+  --delay: 0.01s;
+  --delay2: 0.59s;
+  --angle: -10.1deg;
+  --skew: -0.1deg;
+}
+.imageRoll > i > i > i {
+  --bpx: -10px;
+  --delay: 0.02s;
+  --delay2: 0.58s;
+  --angle: -10.2deg;
+  --skew: -0.2deg;
+}
+.imageRoll > i > i > i > i {
+  --bpx: -15px;
+  --delay: 0.03s;
+  --delay2: 0.57s;
+  --angle: -10.3deg;
+  --skew: -0.3deg;
+}
+.imageRoll > i > i > i > i > i {
+  --bpx: -20px;
+  --delay: 0.04s;
+  --delay2: 0.56s;
+  --angle: -10.4deg;
+  --skew: -0.4deg;
+}
+.imageRoll > i > i > i > i > i > i {
+  --bpx: -25px;
+  --delay: 0.05s;
+  --delay2: 0.55s;
+  --angle: -10.5deg;
+  --skew: -0.5deg;
+}
+.imageRoll > i > i > i > i > i > i > i {
+  --bpx: -30px;
+  --delay: 0.06s;
+  --delay2: 0.54s;
+  --angle: -10.6deg;
+  --skew: -0.6deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i {
+  --bpx: -35px;
+  --delay: 0.07s;
+  --delay2: 0.53s;
+  --angle: -10.7deg;
+  --skew: -0.7deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i {
+  --bpx: -40px;
+  --delay: 0.08s;
+  --delay2: 0.52s;
+  --angle: -10.8deg;
+  --skew: -0.8deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -45px;
+  --delay: 0.09s;
+  --delay2: 0.51s;
+  --angle: -10.9deg;
+  --skew: -0.9deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -50px;
+  --delay: 0.1s;
+  --delay2: 0.5s;
+  --angle: -11deg;
+  --skew: -1deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -55px;
+  --delay: 0.11s;
+  --delay2: 0.49s;
+  --angle: -11.1deg;
+  --skew: -1.1deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -60px;
+  --delay: 0.12s;
+  --delay2: 0.48s;
+  --angle: -11.2deg;
+  --skew: -1.2deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -65px;
+  --delay: 0.13s;
+  --delay2: 0.47s;
+  --angle: -11.3deg;
+  --skew: -1.3deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -70px;
+  --delay: 0.14s;
+  --delay2: 0.46s;
+  --angle: -11.4deg;
+  --skew: -1.4deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -75px;
+  --delay: 0.15s;
+  --delay2: 0.45s;
+  --angle: -11.5deg;
+  --skew: -1.5deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -80px;
+  --delay: 0.16s;
+  --delay2: 0.44s;
+  --angle: -11.6deg;
+  --skew: -1.6deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -85px;
+  --delay: 0.17s;
+  --delay2: 0.43s;
+  --angle: -11.7deg;
+  --skew: -1.7deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -90px;
+  --delay: 0.18s;
+  --delay2: 0.42s;
+  --angle: -11.8deg;
+  --skew: -1.8deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -95px;
+  --delay: 0.19s;
+  --delay2: 0.41s;
+  --angle: -11.9deg;
+  --skew: -1.9deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -100px;
+  --delay: 0.2s;
+  --delay2: 0.4s;
+  --angle: -12deg;
+  --skew: -2deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -105px;
+  --delay: 0.21s;
+  --delay2: 0.39s;
+  --angle: -12.1deg;
+  --skew: -2.1deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -110px;
+  --delay: 0.22s;
+  --delay2: 0.38s;
+  --angle: -12.2deg;
+  --skew: -2.2deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -115px;
+  --delay: 0.23s;
+  --delay2: 0.37s;
+  --angle: -12.3deg;
+  --skew: -2.3deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -120px;
+  --delay: 0.24s;
+  --delay2: 0.36s;
+  --angle: -12.4deg;
+  --skew: -2.4deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -125px;
+  --delay: 0.25s;
+  --delay2: 0.35s;
+  --angle: -12.5deg;
+  --skew: -2.5deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -130px;
+  --delay: 0.26s;
+  --delay2: 0.34s;
+  --angle: -12.6deg;
+  --skew: -2.6deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -135px;
+  --delay: 0.27s;
+  --delay2: 0.33s;
+  --angle: -12.7deg;
+  --skew: -2.7deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -140px;
+  --delay: 0.28s;
+  --delay2: 0.32s;
+  --angle: -12.8deg;
+  --skew: -2.8deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -145px;
+  --delay: 0.29s;
+  --delay2: 0.31s;
+  --angle: -12.9deg;
+  --skew: -2.9deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -150px;
+  --delay: 0.3s;
+  --delay2: 0.3s;
+  --angle: -13deg;
+  --skew: -3deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -155px;
+  --delay: 0.31s;
+  --delay2: 0.29s;
+  --angle: -13.1deg;
+  --skew: -3.1deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -160px;
+  --delay: 0.32s;
+  --delay2: 0.28s;
+  --angle: -13.2deg;
+  --skew: -3.2deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -165px;
+  --delay: 0.33s;
+  --delay2: 0.27s;
+  --angle: -13.3deg;
+  --skew: -3.3deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -170px;
+  --delay: 0.34s;
+  --delay2: 0.26s;
+  --angle: -13.4deg;
+  --skew: -3.4deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -175px;
+  --delay: 0.35s;
+  --delay2: 0.25s;
+  --angle: -13.5deg;
+  --skew: -3.5deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -180px;
+  --delay: 0.36s;
+  --delay2: 0.24s;
+  --angle: -13.6deg;
+  --skew: -3.6deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -185px;
+  --delay: 0.37s;
+  --delay2: 0.23s;
+  --angle: -13.7deg;
+  --skew: -3.7deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -190px;
+  --delay: 0.38s;
+  --delay2: 0.22s;
+  --angle: -13.8deg;
+  --skew: -3.8deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -195px;
+  --delay: 0.39s;
+  --delay2: 0.21s;
+  --angle: -13.9deg;
+  --skew: -3.9deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -200px;
+  --delay: 0.4s;
+  --delay2: 0.2s;
+  --angle: -14deg;
+  --skew: -4deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -205px;
+  --delay: 0.41s;
+  --delay2: 0.19s;
+  --angle: -14.1deg;
+  --skew: -4.1deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -210px;
+  --delay: 0.42s;
+  --delay2: 0.18s;
+  --angle: -14.2deg;
+  --skew: -4.2deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -215px;
+  --delay: 0.43s;
+  --delay2: 0.17s;
+  --angle: -14.3deg;
+  --skew: -4.3deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -220px;
+  --delay: 0.44s;
+  --delay2: 0.16s;
+  --angle: -14.4deg;
+  --skew: -4.4deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -225px;
+  --delay: 0.45s;
+  --delay2: 0.15s;
+  --angle: -14.5deg;
+  --skew: -4.5deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -230px;
+  --delay: 0.46s;
+  --delay2: 0.14s;
+  --angle: -14.6deg;
+  --skew: -4.6deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -235px;
+  --delay: 0.47s;
+  --delay2: 0.13s;
+  --angle: -14.7deg;
+  --skew: -4.7deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -240px;
+  --delay: 0.48s;
+  --delay2: 0.12s;
+  --angle: -14.8deg;
+  --skew: -4.8deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -245px;
+  --delay: 0.49s;
+  --delay2: 0.11s;
+  --angle: -14.9deg;
+  --skew: -4.9deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -250px;
+  --delay: 0.5s;
+  --delay2: 0.1s;
+  --angle: -15deg;
+  --skew: -5deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -255px;
+  --delay: 0.51s;
+  --delay2: 0.09s;
+  --angle: -15.1deg;
+  --skew: -5.1deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -260px;
+  --delay: 0.52s;
+  --delay2: 0.08s;
+  --angle: -15.2deg;
+  --skew: -5.2deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -265px;
+  --delay: 0.53s;
+  --delay2: 0.07s;
+  --angle: -15.3deg;
+  --skew: -5.3deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -270px;
+  --delay: 0.54s;
+  --delay2: 0.06s;
+  --angle: -15.4deg;
+  --skew: -5.4deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -275px;
+  --delay: 0.55s;
+  --delay2: 0.05s;
+  --angle: -15.5deg;
+  --skew: -5.5deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -280px;
+  --delay: 0.56s;
+  --delay2: 0.04s;
+  --angle: -15.6deg;
+  --skew: -5.6deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -285px;
+  --delay: 0.57s;
+  --delay2: 0.03s;
+  --angle: -15.7deg;
+  --skew: -5.7deg;
+}
+.imageRoll > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i > i {
+  --bpx: -290px;
+  --delay: 0.58s;
+  --delay2: 0.02s;
+  --angle: -15.8deg;
+  --skew: -5.8deg;
+}
+.imageRoll > figcaption {
+  position: absolute;
+  text-align: center;
+  padding-top: 2em;
+  padding-inline: 100px 25px;
+  z-index: -1;
+  font-size: 32px;
+  width: 100%;
+  height: 100%;
+}
+.imageRoll > figcaption strong {
+  display: block;
+} 
+ .b-example-divider {
+    height: 3rem;
+    background-color: rgba(0, 0, 0, .1);
+    border: solid rgba(0, 0, 0, .15);
+    border-width: 1px 0;
+    box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+  }
+  
+  .bi {
+    vertical-align: -.125em;
+    fill: currentColor;
+  }
+  
+  .feature-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    color: #fff;
+    border-radius: .75rem;
+  }
+  
+  .icon-link {
+    display: inline-flex;
+    align-items: center;
+  }
+  .icon-link > .bi {
+    margin-top: .125rem;
+    margin-left: .125rem;
+    transition: transform .25s ease-in-out;
+    fill: currentColor;
+  }
+  .icon-link:hover > .bi {
+    transform: translate(.25rem);
+  }
+  
+  .icon-square {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.5rem;
+    border-radius: .75rem;
+  }
+  
+  .rounded-4 { border-radius: .5rem; }
+  .rounded-5 { border-radius: 1rem; }
+  
+  .text-shadow-1 { text-shadow: 0 .125rem .25rem rgba(0, 0, 0, .25); }
+  .text-shadow-2 { text-shadow: 0 .25rem .5rem rgba(0, 0, 0, .25); }
+  .text-shadow-3 { text-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .25); }
+  
+  .card-cover {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+  }
+   
+   .b-example-divider {
+    height: 3rem;
+    background-color: rgba(0, 0, 0, .1);
+    border: solid rgba(0, 0, 0, .15);
+    border-width: 1px 0;
+    box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+  }*/
+  section {
+    padding: 60px 0;
+    min-height: 100vh;
+}
+a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    outline: none;
+}
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}.bg-gray {
+    background-color: #f9f9f9;
+}
+
+.site-heading h2 {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.site-heading h2 span {
+  color: #c68225;
+}
+
+.site-heading h4 {
+  display: inline-block;
+  padding-bottom: 20px;
+  position: relative;
+  text-transform: capitalize;
+  z-index: 1;
+}
+
+.site-heading h4::before {
+  background: #c68225 none repeat scroll 0 0;
+  bottom: 0;
+  content: "";
+  height: 2px;
+  left: 50%;
+  margin-left: -25px;
+  position: absolute;
+  width: 50px;
+}
+
+.site-heading {
+  margin-bottom: 60px;
+  overflow: hidden;
+  margin-top: -5px;
+}
+
+.carousel-shadow .owl-stage-outer {
+  margin: -15px -15px 0;
+  padding: 15px;
+}
+
+.we-offer-area .our-offer-carousel .owl-dots .owl-dot span {
+  background: #ffffff none repeat scroll 0 0;
+  border: 2px solid;
+  height: 15px;
+  margin: 0 5px;
+  width: 15px;
+}
+
+.we-offer-area .our-offer-carousel .owl-dots .owl-dot.active span {
+  background: #c68225 none repeat scroll 0 0;
+  border-color: #c68225;
+}
+
+.we-offer-area .item {
+  background: #ffffff none repeat scroll 0 0;
+  border-left: 2px solid #c68225;
+  -moz-box-shadow: 0 0 10px #cccccc;
+  -webkit-box-shadow: 0 0 10px #cccccc;
+  -o-box-shadow: 0 0 10px #cccccc;
+  box-shadow: 0 0 10px #cccccc;
+  overflow: hidden;
+  padding: 30px;
+  position: relative;
+  z-index: 1;
+  border-radius: 5px;
+}
+
+.we-offer-area.text-center .item {
+  background: #ffffff none repeat scroll 0 0;
+  border: medium none;
+  padding: 67px 40px 64px;
+}
+
+.we-offer-area.text-center .item i {
+  background: #c68225 none repeat scroll 0 0;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 40px;
+  height: 80px;
+  line-height: 80px;
+  position: relative;
+  text-align: center;
+  width: 80px;
+  z-index: 1;
+  transition: all 0.35s ease-in-out;
+  -webkit-transition: all 0.35s ease-in-out;
+  -moz-transition: all 0.35s ease-in-out;
+  -ms-transition: all 0.35s ease-in-out;
+  -o-transition: all 0.35s ease-in-out;
+  margin-bottom: 25px;
+}
+
+.we-offer-area.text-center .item i::after {
+  border: 2px solid #c68225;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  content: "";
+  height: 90px;
+  left: -5px;
+  position: absolute;
+  top: -5px;
+  width: 90px;
+  z-index: -1;
+  transition: all 0.35s ease-in-out;
+  -webkit-transition: all 0.35s ease-in-out;
+  -moz-transition: all 0.35s ease-in-out;
+  -ms-transition: all 0.35s ease-in-out;
+  -o-transition: all 0.35s ease-in-out;
+}
+
+.we-offer-area.item-border-less .item {
+  border: medium none;
+}
+
+.we-offer-area .our-offer-items.less-carousel .equal-height {
+  margin-bottom: 30px;
+}
+
+.we-offer-area.item-border-less .item .number {
+  font-family: "Poppins",sans-serif;
+  font-size: 50px;
+  font-weight: 900;
+  opacity: 0.1;
+  position: absolute;
+  right: 30px;
+  top: 30px;
+}
+
+.our-offer-carousel.center-active .owl-item:nth-child(2n) .item,
+.we-offer-area.center-active .single-item:nth-child(2n) .item {
+  background: #c68225 none repeat scroll 0 0;
+}
+
+.our-offer-carousel.center-active .owl-item:nth-child(2n) .item i,
+.our-offer-carousel.center-active .owl-item:nth-child(2n) .item h4,
+.our-offer-carousel.center-active .owl-item:nth-child(2n) .item p,
+.we-offer-area.center-active .single-item:nth-child(2n) .item i,
+.we-offer-area.center-active .single-item:nth-child(2n) .item h4,
+.we-offer-area.center-active .single-item:nth-child(2n) .item p {
+  color: #ffffff;
+}
+
+.we-offer-area .item i {
+  color: #c68225;
+  display: inline-block;
+  font-size: 60px;
+  margin-bottom: 20px;
+}
+
+.we-offer-area .item h4 {
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.we-offer-area .item p {
+  margin: 0;
+}
+
+.we-offer-area .item i,
+.we-offer-area .item h4,
+.we-offer-area .item p {
+  transition: all 0.35s ease-in-out;
+  -webkit-transition: all 0.35s ease-in-out;
+  -moz-transition: all 0.35s ease-in-out;
+  -ms-transition: all 0.35s ease-in-out;
+  -o-transition: all 0.35s ease-in-out;
+}
+
+.we-offer-area .item::after {
+  background: #c68225 none repeat scroll 0 0;
+  content: "";
+  height: 100%;
+  left: -100%;
+  position: absolute;
+  top: 0;
+  transition: all 0.35s ease-in-out;
+  -webkit-transition: all 0.35s ease-in-out;
+  -moz-transition: all 0.35s ease-in-out;
+  -ms-transition: all 0.35s ease-in-out;
+  -o-transition: all 0.35s ease-in-out;
+  width: 100%;
+  z-index: -1;
+}
+
+.we-offer-area .item:hover::after {
+  left: 0;
+}
+
+.we-offer-area .item:hover i,
+.we-offer-area .item:hover h4,
+.we-offer-area .item:hover p {
+  color: #ffffff !important;
+}
+
+.we-offer-area.text-center .item:hover i::after {
+  border-color: #ffffff !important;
+}
+
+.we-offer-area.text-center .item:hover i {
+  background-color: #ffffff !important;
+  color: #c68225 !important;
+}
+
+.we-offer-area.text-left .item i {
+  background: #c68225 none repeat scroll 0 0;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  color: #ffffff;
+  display: inline-block;
+  font-size: 60px;
+  height: 100px;
+  line-height: 100px;
+  margin-bottom: 30px;
+  position: relative;
+  width: 100px;
+  z-index: 1;
+  text-align: center;
+}
+
+.we-offer-area.text-left .item i::after {
+  border: 2px solid #c68225;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  content: "";
+  height: 120px;
+  left: -10px;
+  position: absolute;
+  top: -10px;
+  width: 120px;
+}

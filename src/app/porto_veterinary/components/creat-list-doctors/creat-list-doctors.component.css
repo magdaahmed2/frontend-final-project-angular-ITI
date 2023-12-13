@@ -1,0 +1,14 @@
+
+.container-fluid{
+    background-image: url('/assets/bg.jpeg');
+   
+    background-size: cover;
+    background-position: center;
+  
+  
+    background-repeat: repeat-y;
+
+  }
+.card{
+    background-color: #a79894;
+}

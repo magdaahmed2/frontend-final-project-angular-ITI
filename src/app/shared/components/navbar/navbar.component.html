@@ -1,0 +1,149 @@
+<header class="p-1 text-white">
+  <div class="container-fluid">
+    <div
+      class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+    >
+      <a href="/" class="text-decoration-none">
+        <img
+          src="/assets/logof.png"
+          class="me-5"
+          style="width: 220px; height: 60px"
+        />
+      </a>
+
+      <ul
+        class="nav col-12 col-lg-auto me-lg-auto pt-2 justify-content-center mb-md-0"
+      >
+        <li>
+          <a
+            href="#"
+            class="nav-link px-2 anav_white"
+            routerLinkActive="background rounded text-dark"
+            routerLink=""
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Home</a
+          >
+        </li>
+        <li></li>
+        <li>
+          <a
+            href="#"
+            class="nav-link px-2 anav_white"
+            routerLinkActive="background rounded text-dark"
+            routerLink="/products"
+            >Pets
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="#"
+            class="nav-link px-2 anav_white"
+            routerLinkActive="background rounded text-dark"
+            routerLink="/supplies"
+            >Supplies</a
+          >
+        </li>
+
+        <li>
+          <a
+            href="#"
+            class="nav-link px-2 anav_white"
+            routerLinkActive="background rounded text-dark"
+            routerLink="/show_Vets"
+            >Veterinary Clinic</a
+          >
+        </li>
+        <li>
+          <a
+            href="#"
+            class="nav-link px-2 anav_white"
+            routerLinkActive="background rounded text-dark"
+            routerLink="/about_us"
+            >About Us</a
+          >
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/cart">
+            <i
+              class="fa fa-shopping-cart anav_white fs-2 ps-1 pe-1"
+              routerLinkActive="background rounded text-dark"
+              routerLink="/cart"
+            ></i>
+            <span class="badge badge-danger">{{ cart_length }}</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="text-end ">
+        <div *ngIf="userLogin; else loginButtons">
+          <div class="dropdown text-end">
+            <a
+              href="#"
+              class="d-block link-body-emphasis text-white text-decoration-none dropdown-toggle"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i class="fa fa-user-circle fa-lg text-white fs-3"></i>
+            </a>
+            <ul class="dropdown-menu text-small">
+              <li *ngIf="userData.role == 'client'">
+                <a class="dropdown-item" routerLink="user-account"
+                  >{{ userData.name }}
+                </a>
+              </li>
+              <li *ngIf="userData.role == 'owner'">
+                <a class="dropdown-item" routerLink="user-vet"
+                  >{{ userData.name }}
+                </a>
+              </li>
+              <li *ngIf="userData.role == 'admin'">
+                <a class="dropdown-item" routerLink="admin"
+                  >{{ userData.name }}
+                </a>
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <a class="dropdown-item" (click)="logout()" href="#"
+                  >Sign out</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- <button type="button" class="btn btn-outline-light" routerLink="choose_form" routerLinkActive="bg-dark text-white">Sign-up</button> -->
+        </div>
+        <ng-template #loginButtons>
+          <button
+            type="button"
+            class="btn btn-outline-light me-2"
+            routerLinkActive="background rounded text-dark"
+            routerLink="login"
+          >
+            Login
+          </button>
+          <button type="button" class="btn btn-outline-light" routerLink="choose_form" routerLinkActive="background rounded text-dark">Sign-up</button>
+          <div class="btn-group">
+            <!-- <button
+              type="button"
+              class="btn btn-outline-light rounded"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Sign-up
+            </button> -->
+            <!-- <div class="dropdown-menu" style="margin-right: 30px">
+              <a class="dropdown-item" routerLink="register"
+                >Sign up as a client</a
+              >
+              <a class="dropdown-item" routerLink="register-clinic"
+                >Sign up as a clinic</a
+              >
+            </div> -->
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</header>

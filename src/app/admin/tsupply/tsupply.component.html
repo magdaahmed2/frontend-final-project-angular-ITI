@@ -1,0 +1,440 @@
+
+
+                  <!-- button add new supply -->
+                  <button class="btn btn-primary margin-btn"
+                  data-bs-toggle="modal"
+                  data-bs-target="#supplyModal"
+                  style="margin: 25px;"
+          >
+            Add New Supply
+          </button>
+          
+
+<!-- //////////////////table//////////////////////// -->
+<div class="container table-responsive py-5"> 
+  <h1> All supplies Created</h1>
+  
+  <table class="table table-bordered table-hover">
+   
+ 
+
+    <div class="form-group has-search">
+      <span class="fa fa-search form-control-feedback"></span>
+      <input type="text"[(ngModel)]="searchText" class="form-control" placeholder="Search">
+    </div>
+    
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">name </th>
+        <th scope="col">description</th>
+        <th scope="col">Price</th>
+        <th scope="col">Image</th>
+        <th scope="col">quantity</th>
+        <th scope="col">Created at</th>
+        <th scope="col">Updated at</th>    
+        <th scope="col">Delete</th>
+        <th scope="col">Update</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+   
+      <tr  *ngFor="let  supply of allSupplies| paginate: { itemsPerPage: itemsPerPage, currentPage: p}|search:searchText">
+        <th scope="row">{{supply.name}}</th>
+        <td>{{supply.description}}</td>
+        <td>{{supply.price}}</td>
+        <td> <img [src]="generateImageUrl(supply.image)" style="height: 100%; max-height: 150px;" width="200px" alt="" class="avatar-lg rounded" />
+        </td>
+        <td>{{supply.quantity}}</td>
+        <td>{{ supply.created_at | date: 'yyyy-MM-dd' }}</td>
+        <td>{{ supply.updated_at | date: 'yyyy-MM-dd ' }}</td>
+       
+       
+       
+        <td>
+          <button
+            class="btn btn-danger mx-2"
+            data-bs-toggle="modal"
+            data-bs-target="#myModal"
+            (click)="deleteDoctor(supply.id)"
+          >
+            Delete
+          </button></td>
+     
+      <td> <button
+        type="button"
+        class="btn btn-success"
+        data-bs-toggle="modal"
+        data-bs-target="#updateDoctorModal"
+        (click)="setUpdateData(supply,supply.id)"
+      >
+        Update 
+      </button></td>
+     </tr>
+     
+      <div class="text-center" *ngIf="allSupplies.length">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+    </tbody>
+  </table>
+  </div>
+  <!-- /////////model add new//////////////// -->
+
+  <div
+class="modal fade"
+id="supplyModal"
+tabindex="-1"
+aria-labelledby="supplyModalLabel"
+aria-hidden="true"
+>
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title" id="supplyModalLabel">
+Add new supply
+</h5>
+<button
+type="button"
+class="btn-close"
+data-bs-dismiss="modal"
+aria-label="Close"
+></button>
+</div>
+<div class="modal-body">
+
+<form [formGroup]="addSupplyForm" (ngSubmit)="onAddSupply()" enctype="multipart/form-data">
+<div class="mb-3">
+ <label for="name">supply Name</label>
+ <input
+   type="text"
+   class="form-control"
+   id="name"
+   formControlName="name"
+   required
+ />
+
+ <div
+ *ngIf="
+ addSupplyForm.controls['name'].touched &&
+ addSupplyForm.controls['name'].invalid
+ "
+ id="name_help"
+ class="text-danger form-text"
+>
+ <small *ngIf="addSupplyForm.controls['name'].errors?.['required']">
+   name field is required
+ </small>
+ <small *ngIf="addSupplyForm.controls['name'].errors?.['minlength']">
+   Min. length is 2
+ </small>
+</div>
+</div>
+<!-- /////////////////////////////description//////////////////// -->
+<div class="mb-3">
+ <label for="description">supply description</label>
+ <input
+   type="text"
+   class="form-control"
+   id="description"
+   formControlName="description"
+   required
+ />
+
+ <div
+ *ngIf="
+ addSupplyForm.controls['description'].touched &&
+ addSupplyForm.controls['description'].invalid
+ "
+ id="name_help"
+ class="text-danger form-text"
+>
+ <small *ngIf="addSupplyForm.controls['description'].errors?.['required']">
+   description field is required
+ </small>
+ <small *ngIf="addSupplyForm.controls['description'].errors?.['minlength']">
+   Min. length is 2
+ </small>
+</div>
+</div>
+
+<div class="mb-3">
+ <label for="image">suplly Photo</label>
+ <input
+   type="file"
+   (change)="get_supplyImagepath($event)"
+   class="form-control"
+   formControlName="image"
+   id="image"
+ />
+ <img
+   src="{{ supplyBase64 }}"
+   width="200px"
+   height="200px"
+   alt=""
+ />
+
+ <div
+ *ngIf="
+ addSupplyForm.controls['image'].touched &&
+ addSupplyForm.controls['image'].invalid
+ "
+ id="name_help"
+ class="text-danger form-text"
+>
+ <small *ngIf="addSupplyForm.controls['image'].errors?.['required']">
+   image field is required
+ </small>
+ 
+</div>
+</div>
+
+
+
+<!-- //////////////////////////////price///////////////////////////// -->
+<div class="mb-3">
+ <label for="price">price</label>
+ <input
+   type="number"
+   class="form-control"
+   id="price"
+   formControlName="price"
+   required
+ />
+ <div
+ *ngIf="
+ addSupplyForm.controls['price'].touched &&
+ addSupplyForm.controls['price'].invalid
+ "
+ id="name_help"
+ class="text-danger form-text"
+>
+ <small *ngIf="addSupplyForm.controls['price'].errors?.['required']">
+   price field is required
+ </small>
+ 
+</div>
+
+</div> 
+           <!-- ///////////////////////quantity///////////////////// -->
+<div class="mb-3">
+ <label for="quantity">quantity</label>
+ <input
+   type="number"
+   class="form-control"
+   id="quantity"
+   formControlName="quantity"
+   required
+ />
+ <div
+ *ngIf="
+ addSupplyForm.controls['quantity'].touched &&
+ addSupplyForm.controls['quantity'].invalid
+ "
+ id="name_help"
+ class="text-danger form-text"
+>
+ <small *ngIf="addSupplyForm.controls['quantity'].errors?.['required']">
+   quantity field is required
+ </small>
+ 
+</div>
+
+</div>
+
+
+
+<!-- /////////////////////////////category////////////// -->
+
+<div class="mb-3">
+<label for="category">category</label>
+<input
+type="text"
+class="form-control"
+id="category"
+formControlName="category"
+required
+/>
+<div
+*ngIf="
+addSupplyForm.controls['category'].touched &&
+addSupplyForm.controls['category'].invalid
+"
+id="name_help"
+class="text-danger form-text"
+>
+<small *ngIf="addSupplyForm.controls['category'].errors?.['required']">
+category field is required
+</small>
+
+</div>
+
+</div> 
+
+
+
+
+<button type="button" class="btn btn-primary" [disabled]="addSupplyForm.invalid" data-bs-dismiss="modal"
+(click)="onAddSupply()" [disabled]="!addSupplyForm.valid">
+Save 
+</button>
+</form>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+ <!-- ////////////////////model delete////////////////////// -->
+
+
+ 
+ 
+ 
+ <div
+ class="modal fade"
+ id="myModal"
+ tabindex="-1"
+ aria-labelledby="exampleModalLabel"
+ aria-hidden="true"
+>
+ <div class="modal-dialog">
+   <div class="modal-content">
+     <div class="modal-body">
+       <div
+         class="alert alert-warning alert-dismissible fade show"
+         role="alert"
+       >
+         are you sure that you want to delete this supply
+       </div>
+     </div>
+     <div class="modal-footer">
+       <button
+         type="button"
+         class="btn btn-secondary"
+         data-bs-dismiss="modal"
+       >
+         Close
+       </button>
+       <button
+         type="button"
+         class="btn btn-danger"
+         data-bs-dismiss="modal"
+         (click)="modeldeleteDoctor()"
+
+       >
+         confirme
+       </button>
+     </div>
+   </div>
+ </div>
+</div>
+
+
+
+
+
+<!-- The Modal for Updating Doctor -->
+<div class="modal fade" id="updateDoctorModal" tabindex="-1"
+aria-labelledby="updateDoctorModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title" id="updateDoctorModalLabel">
+Update Doctor
+</h5>
+<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+<!-- Update Doctor Form -->
+<form [formGroup]="updateSupplyForm" (ngSubmit)="onUpdateSupply()">
+<div class="mb-3">
+ <label for="name">supply Name</label>
+ <input
+   type="text"
+   class="form-control"
+   id="name"
+   formControlName="name"
+   required
+ />
+
+
+</div>
+<div class="mb-3">
+ <label for="image">supply Photo</label>
+ <input
+   type="file"
+   (change)="get_supplyImagepath($event)"
+   class="form-control"
+   formControlName="image"
+   id="image"
+ />
+ <!-- Display the selected image -->
+ <img  src="{{ supplyBase64 }}" width="200px" height="200px" alt="" />
+</div>
+
+<!-- /////////////////////////////description//////////////////// -->
+<div class="mb-3">
+<label for="description">supply description</label>
+<input
+ type="text"
+ class="form-control"
+ id="description"
+ formControlName="description"
+ required
+/>
+</div>
+
+<!-- //////////////////////////////price///////////////////////////// -->
+<div class="mb-3">
+ <label for="price">price</label>
+ <input
+   type="number"
+   class="form-control"
+   id="price"
+   formControlName="price"
+   required
+ />
+ </div>
+                  <!-- ///////////////////////quantity///////////////////// -->
+<div class="mb-3">
+ <label for="quantity">quantity</label>
+ <input
+   type="number"
+   class="form-control"
+   id="quantity"
+   formControlName="quantity"
+   required
+ />
+ </div>
+
+ <!-- /////////////////////////////category////////////// -->
+
+<div class="mb-3">
+<label for="category">category</label>
+<input
+type="text"
+class="form-control"
+id="category"
+formControlName="category"
+required
+/>
+</div>
+
+
+<!-- <button type="submit" class="btn btn-primary">Update</button> -->
+
+<button type="button" class="btn btn-primary" [disabled]="updateSupplyForm.invalid"
+data-bs-dismiss="modal"
+(click)="onUpdateSupply()" [disabled]="!updateSupplyForm.valid">
+Save changes
+</button>
+</form>
+
+
+</div>
+</div>
+</div>
+</div>

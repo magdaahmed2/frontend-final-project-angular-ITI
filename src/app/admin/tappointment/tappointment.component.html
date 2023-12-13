@@ -1,0 +1,150 @@
+<div class="container table-responsive py-5">
+  <h1>All vets Created</h1>
+  <table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+      <tr class="text-center">
+        <th scope="col">Id</th>
+        <th scope="col">Created at</th>
+        <th scope="col">Updated at</th>
+        <th scope="col">Name</th>
+        <th scope="col">Pet Type</th>
+        <th scope="col">Date</th>
+        <th scope="col">Time</th>
+        <th scope="col">Status</th>
+        <th scope="col" class="bg-danger">Delete</th>
+      </tr>
+      <div class="form-group has-search">
+        <span class="fa fa-search form-control-feedback"></span>
+        <input type="text"[(ngModel)]="searchText" class="form-control" placeholder="Search">
+      </div>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="
+          let app of apps
+            | paginate : { itemsPerPage: itemsPerPage, currentPage: p }|search:searchText "
+      >
+        <td>{{ app.id }}</td>
+        <td>{{ app.created_at | date : "yyyy-MM-dd " }}</td>
+        <td>{{ app.updated_at | date : "yyyy-MM-dd " }}</td>
+        <td>{{ app.user.name }}</td>
+        <td>{{ app.pet_type }}</td>
+        <td>{{ app.date }}</td>
+        <td>{{ app.time }}</td>
+        <td rejectModalToggle class="text-success">
+          <p class="text-success" *ngIf="app.status == 'accepted'">Accepted</p>
+          <p class="text-danger" *ngIf="app.status == 'rejected'">Rejected</p>
+          <p *ngIf="app.status == 'wait'" class="waiting">Wait for action</p>
+        </td>
+        <!-- end reject mail -->
+        <td *ngIf="app.status == 'rejected'">
+          <!-- Start Modal Delete -->
+
+          <button
+            class="btn btn-danger mx-2"
+            data-bs-toggle="modal"
+            data-bs-target="#DeleteModaldoc"
+            (click)="deleteAppoint(app.id)"
+          >
+            Delete
+          </button>
+          <div
+            class="modal fade"
+            id="DeleteModaldoc"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <div
+                    class="alert alert-warning alert-dismissible fade show"
+                    role="alert"
+                  >
+                    are you sure that you want to delete this Appointment ?
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    data-bs-dismiss="modal"
+                    (click)="modaldeleteAppoint()"
+                  >
+                    confirme
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End Modal Delete -->
+        </td>
+        <td *ngIf="app.status == 'accepted'">
+          <!-- Start Modal Delete -->
+
+          <button
+            class="btn btn-danger mx-2"
+            data-bs-toggle="modal"
+            data-bs-target="#DeleteModaldoc"
+            (click)="deleteAppoint(app.id)"
+          >
+            Delete
+          </button>
+          <div
+            class="modal fade"
+            id="DeleteModaldoc"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <div
+                    class="alert alert-warning alert-dismissible fade show"
+                    role="alert"
+                  >
+                    are you sure that you want to delete this Appointment ?
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    data-bs-dismiss="modal"
+                    (click)="modaldeleteAppoint()"
+                  >
+                    confirme
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End Modal Delete -->
+        </td>
+        <td *ngIf="app.status == 'wait'">
+          <p class="fw-900 text-warning waiting">Wait Action</p>
+        </td>
+      </tr>
+
+      <div class="text-center">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+    </tbody>
+  </table>
+</div>

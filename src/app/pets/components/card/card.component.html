@@ -1,0 +1,307 @@
+
+    <!-- banner bg main start -->
+    <div class="banner_bg_main">
+        <!-- header top section start -->
+
+        <!-- header top section start -->
+        <!-- logo section start -->
+        <!-- logo section end -->
+        <!-- header section start -->
+        <div class="header_section">
+          <div class="container">
+              <div class="containt_main">
+
+                <div class="dropdown pt-5">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search By
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <button class="dropdown-item" (click)="chmodSearch('all')">all</button>
+                      <button class="dropdown-item" (click)="chmodSearch('category')">category</button>
+                      <button class="dropdown-item" (click)="chmodSearch('price')">price</button>
+                      
+                      <button class="dropdown-item" (click)="chmodSearch('type')">type</button>
+                    
+                    </div>
+                </div>
+                <div class="main pt-5">
+                    <!-- Another variation with a button -->
+                    <div class="input-group">
+                      <input [(ngModel)]="searchTerm" type="text" class="form-control" [placeholder]="getPlaceholder()">
+                      <div class="input-group-append">
+                          <button (click)="search()" class="btn btn-secondary" type="button" style="background-color: #f26522; border-color:#f26522 ">
+                          <i class="fa fa-search"></i>
+                          </button>
+                      </div>
+                    </div>
+                </div>
+                <div class="header_box">
+                    <!-- <div class="lang_box ">
+                      <a href="#" title="Language" class="nav-link" data-toggle="dropdown" aria-expanded="true">
+                      <img src="/assets/images/flag-uk.png" alt="flag" class="mr-2 " title="United Kingdom"> English <i class="fa fa-angle-down ml-2" aria-hidden="true"></i>
+                      </a>
+                      <div class="dropdown-menu ">
+                          <a href="#" class="dropdown-item">
+                          <img src="/assets/images/flag-france.png" class="mr-2" alt="flag">
+                          French
+                          </a>
+                      </div>
+                    </div> -->
+
+                </div>
+              </div>
+          </div>
+        </div>
+        
+        <!-- header section end -->
+        <!-- banner section start -->
+        <div class="banner_section layout_padding">
+          <div class="container">
+
+                      <div class="row">
+                        <div class="px-4  text-center">
+                          <!-- <img class="d-block mx-auto mb-4" src="/assets/logomeshmesh.png" alt="" width="200" height="100"> -->
+                          <h1 class="display-5 fw-bold pb-4 ">Give<span style="color: #FF9831;"> Meshmesh</span> the care<br> it deserves</h1>
+                          <div class="col-lg-6 mx-auto">
+                            <p class="lead mb-4 pe-4 ps-4 pb-5">Meshmesh, your all-in-one solution for your pet .</p>
+                           
+                          </div>
+                          </div>
+                      </div>
+ 
+                </div>
+
+              </div>
+
+        <!-- banner section end -->
+    </div>
+    <!-- banner bg main end -->
+   
+      <!-- Cats section start -->
+      <div class="fashion_section">
+        <div class="b-example-divider"></div>
+
+        <div id="electronic_main_slider" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="container">
+                    <h1 class="fashion_taital">Cats for Adoption </h1>
+                    <div class="fashion_section_2">
+                      <div class="row">
+                          <div class="col-lg-4 col-sm-4"*ngFor="let pet of AcategoryCats_adopt.slice(0, 3)">
+                            <div class="box_main">
+                                <h4 class="shirt_text">{{ pet.type }}</h4>
+                                <p class="price_text">Start Price  <span style="color: #262626;">$ {{pet.price}}</span></p>
+                                <div class="electronic_img"><img [src]="generateImageUrl(pet.image)"></div>
+                                <div class="btn_main">
+                               <div class="buy_bt"><button type="button" class="btn btn-outline-success" ><a (click)="addToCart(pet)">Add To Cart</a><i class="fa fa-cart-plus"></i></button></div>
+                                  <div class="seemore_bt"><button class="btn btn-outline-secondary  "><a href="#"[routerLink]="['/product', pet.id]">show pet <i class="fa fa-arrow-right"></i></a></button></div>
+                                </div>
+                            </div>
+                          </div>
+                         
+                      </div>
+                    </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="container">
+                    <h1 class="fashion_taital">Cats for Sale</h1>
+                    <div class="fashion_section_2">
+                      <div class="row">
+                          <div class="col-lg-4 col-sm-4"*ngFor="let pet of AcategoryCats_sell.slice(0, 3)">
+                            <div class="box_main">
+                                <h4 class="shirt_text">{{ pet.type }}</h4>
+                                <p class="price_text">Start Price  <span style="color: #262626;">$ {{pet.price}}</span></p>
+                                <div class="electronic_img"><img [src]="generateImageUrl(pet.image)"></div>
+                                <div class="btn_main">
+                               <div class="buy_bt"><button type="button" class="btn btn-outline-success" ><a (click)="addToCart(pet)">Add To Cart</a><i class="fa fa-cart-plus"></i></button></div>
+                                  <div class="seemore_bt"><button class="btn btn-outline-secondary  "><a href="#"[routerLink]="['/product', pet.id]">show pet <i class="fa fa-arrow-right"></i></a></button></div>                                </div>
+                            </div>
+                          </div>
+                         
+                      </div>
+                    </div>
+                </div>
+              </div>
+             
+          </div>
+          <a class="carousel-control-prev" href="#electronic_main_slider" role="button" data-slide="prev">
+          <i class="fa fa-angle-left"></i>
+          </a>
+          <button type="button" class="btn   btn-outline-secondary text-center position-absolute top-100 mt-3  start-50 translate-middle"><a class=" text-dark text-center" href="cats">See More <i class="fa fa-plus "></i></a></button>
+
+          <a class="carousel-control-next" href="#electronic_main_slider" role="button" data-slide="next">
+          <i class="fa fa-angle-right"></i>
+          </a>
+        </div>
+    </div>
+    <!-- Cats section end -->
+    <!-- Dogs section start -->
+    <div class="fashion_section">
+        <div id="main_slider" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="container">
+                    <h1 class="fashion_taital">Dogs for Adoption </h1>
+                    <div class="fashion_section_2">
+                      <div class="row">
+                        <div class="col-lg-4 col-sm-4" *ngFor="let pet of AcategoryDogs_sell.slice(0, 3)">
+                          
+                            <div class="box_main">
+                                <h4 class="shirt_text">{{ pet.type }}</h4>
+                                <!-- <h4 class="shirt_text">{{ pet.category }}</h4> -->
+                                <p class="price_text">Price  <span style="color: #262626;">$ {{pet.price}}</span></p>
+                                <div class="tshirt_img"><img width="300" height="200" [src]="generateImageUrl(pet.image)"></div>
+                                <div class="btn_main">
+                               <div class="buy_bt"><button type="button" class="btn btn-outline-success" ><a (click)="addToCart(pet)">Add To Cart</a><i class="fa fa-cart-plus"></i></button></div>
+                                  <div class="seemore_bt"><button class="btn btn-outline-secondary  "><a href="#"[routerLink]="['/product', pet.id]">show pet <i class="fa fa-arrow-right"></i></a></button></div>                               
+
+                                </div>
+                            </div>
+                          </div>
+                          
+                        
+                      </div>
+                    </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="container">
+                    <h1 class="fashion_taital">Dogs for Sale</h1>
+                    <div class="fashion_section_2">
+                      <div class="row">
+                          <div class="col-lg-4 col-sm-4" *ngFor="let pet of AcategoryDogs_adopt.slice(0, 3)">
+                            <div class="box_main">
+                                <h4 class="shirt_text">{{ pet.type }}</h4>
+                                <p class="price_text">Price  <span style="color: #262626;">$  {{pet.price}}</span></p>
+                                <div class="tshirt_img"><img [src]="generateImageUrl(pet.image)"></div>
+                                <div class="btn_main">
+                               <div class="buy_bt"><button type="button" class="btn btn-outline-success" ><a (click)="addToCart(pet)">Add To Cart</a><i class="fa fa-cart-plus"></i></button></div>
+                                  <div class="seemore_bt"><button class="btn btn-outline-secondary  "><a href="#"[routerLink]="['/product', pet.id]">show pet <i class="fa fa-arrow-right"></i></a></button></div>                                </div>
+                            </div>
+                          </div>
+                        
+                          
+                      </div>
+                    </div>
+                </div>
+              </div>
+              
+          </div>
+          <button type="button" class="btn   btn-outline-secondary text-center position-absolute top-100 mt-3  start-50 translate-middle"><a class=" text-dark text-center" href="dogs">See More <i class="fa fa-plus "></i></a></button>
+
+          <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
+          <i class="fa fa-angle-left"></i>
+          </a>
+          <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
+          <i class="fa fa-angle-right"></i>
+          </a>
+          
+        </div>
+    </div>
+    <!-- Dogs section end -->
+  
+
+
+    <!-- Birds for breeding -->
+    <div class="jewellery_section">
+      <div id="jewellery_main_slider" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="container">
+                  <h1 class="fashion_taital">Birds For Adoption</h1>
+                  <div class="fashion_section_2">
+                      <div class="row">
+                        <div class="col-lg-4 col-sm-4" *ngFor="let pet of AcategoryBirds_adopt.slice(0, 3)">
+                          <div class="box_main">
+                              <h4 class="shirt_text">{{ pet.type }}</h4>
+                              <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
+                              <div class="jewellery_img"><img [src]="generateImageUrl(pet.image)"></div>
+                              <div class="btn_main">
+                               <div class="buy_bt"><button type="button" class="btn btn-outline-success" ><a (click)="addToCart(pet)">Add To Cart</a><i class="fa fa-cart-plus"></i></button></div>
+                                  <div class="seemore_bt"><button class="btn btn-outline-secondary  "><a href="#"[routerLink]="['/product', pet.id]">show pet <i class="fa fa-arrow-right"></i></a></button></div>                              </div>
+                            </div>
+                        </div>
+                     
+                      </div>
+                  </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="container">
+                  <h1 class="fashion_taital">Birds For Sale</h1>
+                  <div class="fashion_section_2">
+                      <div class="row">
+                        <div class="col-lg-4 col-sm-4" *ngFor="let pet of AcategoryBirds_sell.slice(0, 3)">
+                          <div class="box_main">
+                              <h4 class="shirt_text">{{ pet.type }}</h4>
+                              <p class="price_text">Start Price  <span style="color: #262626;">$ {{ pet.price }}</span></p>
+                              <div class="jewellery_img"><img [src]="generateImageUrl(pet.image)"></div>
+                              <div class="btn_main">
+                               <div class="buy_bt"><button type="button" class="btn btn-outline-success" ><a (click)="addToCart(pet)">Add To Cart</a><i class="fa fa-cart-plus"></i></button></div>
+                                  <div class="seemore_bt"><button class="btn btn-outline-secondary  "><a href="#"[routerLink]="['/product', pet.id]">show pet <i class="fa fa-arrow-right"></i></a></button></div>                              </div>
+                            </div>
+                        </div>
+                      
+                      </div>
+                  </div>
+                </div>
+            </div>
+
+          </div>
+          <button type="button" class="btn   btn-outline-secondary text-center position-absolute top-100 mt-3  start-50 translate-middle"><a class=" text-dark text-center" href="birds">See More <i class="fa fa-plus "></i></a></button>
+
+           <a style="margin-top: 190px;" class="carousel-control-prev" href="#jewellery_main_slider" role="button" data-slide="prev">
+           <i class="fa fa-angle-left"></i>
+           </a>
+           
+           <a style="margin-top: 190px;" class="carousel-control-next" href="#jewellery_main_slider" role="button" data-slide="next">
+           <i class="fa fa-angle-right"></i>
+           </a>
+       
+       
+      </div>
+    </div>
+    <!--  Birds section end-->
+      <!-- animal section start -->
+  <div class="fashion_section">
+    <div id="main_slider" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="container">
+                <h1 class="fashion_taital mt-5"> Another animals </h1>
+                <div class="fashion_section_2">
+                  <div class="row">
+                    <div class="col-lg-4 col-sm-4" *ngFor="let pet of AcategoryAnimal_breeding.slice(0, 3)">
+                      
+                        <div class="box_main">
+                            <h4 class="shirt_text">{{ pet.type }}</h4>
+                            <!-- <h4 class="shirt_text">{{ pet.category }}</h4> -->
+                            <p class="price_text">Price  <span style="color: #262626;">$ {{pet.price}}</span></p>
+                            <div class="tshirt_img"><img width="300" height="200" [src]="generateImageUrl(pet.image)"></div>
+                            <div class="btn_main">
+                               <div class="buy_bt"><button type="button" class="btn btn-outline-success" ><a (click)="addToCart(pet)">Add To Cart</a><i class="fa fa-cart-plus"></i></button></div>
+                              <div class="seemore_bt"><button class="btn btn-outline-secondary  "><a href="#"[routerLink]="['/product', pet.id]">show pet <i class="fa fa-arrow-right"></i></a></button></div>
+                            </div>
+                        </div>
+                      </div>
+                      
+                    
+                  </div>
+                </div>
+            </div>
+          </div>
+        
+      </div>
+      <button type="button" class="btn   btn-outline-secondary text-center position-absolute top-100 mt-3  start-50 translate-middle"><a class=" text-dark text-center" href="animalforbreading">See More <i class="fa fa-plus "></i></a></button>
+
+
+    </div>
+    </div>
+
+
+<!-- Your previous code (without form) -->
+<!-- Modal -->
+
+
+

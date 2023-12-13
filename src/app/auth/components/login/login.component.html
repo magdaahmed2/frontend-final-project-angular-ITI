@@ -1,0 +1,107 @@
+<div class="loginbackground">
+  
+  
+  
+  <section class=" " >
+    <div class="container py-5 " >
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-xl-10">
+          <div class="card rounded-3 text-black" style="background-color: #ffe1c9b4;">
+            <div class="row ">
+              <div class="col-lg-6">
+                <div class="card-body p-md-5 mx-md-4">
+  
+                  <div class="text-center">
+               
+                    <h4 class="mt-1 mb-5 pb-1">Login Form</h4>
+                  </div>
+  
+                  <form [formGroup]="loginform" (ngSubmit)="submitForm()">
+                    <p>Please login to your account</p>
+  
+                    <div class="form-outline mb-4">
+                      <label class="form-label" for="form2Example11">Your Email</label>
+                      <input type="email" id="form2Example11" class="form-control"
+                        placeholder="enter email address"
+                         aria-describedby="description_help"
+                        rows="5"
+                        formControlName="email" />
+                      
+  
+                        <div
+                            *ngIf="
+                          loginform.controls['email'].touched &&
+                            loginform.controls['email'].invalid
+                            "
+                            id="email"
+                            class="text-danger form-text"
+                          >
+                            <small *ngIf="loginform.controls['email'].errors?.['required']">
+                              this field is required
+                            </small>
+                            <small *ngIf="loginform.controls['email'].errors?.['pattern']">
+                              Please enter a valid email format.
+                            </small>
+                            
+                          </div>
+                    </div>
+  
+                 
+  
+                    <div class="form-outline mb-4">
+                      <label class="form-label" for="form2Example22">Password</label>
+                      <input type="password" id="form2Example22" class="form-control" 
+                      aria-describedby="password"
+                      formControlName="password"
+                      
+                      />
+                         <div
+                          *ngIf="
+                          loginform.controls['password'].touched &&
+                          loginform.controls['password'].invalid
+                          "
+                          id="password"
+                          class="text-danger form-text"
+                        >
+                          <small *ngIf="loginform.controls['password'].errors?.['required']">
+                            this field is required
+                          </small>
+                          
+                        </div>
+  
+                    </div>
+                    <div *ngIf="error" class="text-danger">Invalid email or password. Please try again.</div>
+                    
+                    
+                    <div class="form-outline mb-4">
+                      <button class="btn btn-success btn-block p-2 fa-lg  mb-3"
+                       type="submit" style="width: 100%;" [disabled]="loginform.invalid">Login</button><br>
+                     
+                    </div>
+                   
+                    <div class="d-flex align-items-center justify-content-center pb-4">
+                      <p class="mb-0 me-2">Don't have an account?</p>
+                      <button type="submit" class="btn btn-primary" ><a class="text-white" href="choose_form">Sign Up</a>
+                      </button>
+                    </div>
+  
+                  </form>
+  
+                </div>
+              </div>
+              <div class="col-lg-6 d-flex align-items-center  "
+               style="background-image: url('./assets/logoc.png');
+                background-repeat: no-repeat;             background-size: 540px ;
+                 /* You can use 'cover', 'contain', or specify a size like '100% 100%' */
+                  ">
+              </div>
+              
+              
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> 
+</div>

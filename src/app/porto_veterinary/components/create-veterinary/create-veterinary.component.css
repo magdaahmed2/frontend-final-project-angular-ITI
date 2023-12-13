@@ -1,0 +1,113 @@
+.container-fluid {
+  background-image: url('/assets/bg.png');
+  /* height: 80vh; */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin: 0; */
+  /* padding: 0; */
+  background-repeat: repeat-y;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.professional-form {
+  background-color: #f8f8f8;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.professional-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.professional-form label {
+  font-weight: bold;
+  color: #555;
+}
+
+.professional-form .form-group {
+  margin-bottom: 20px;
+}
+
+.professional-form .form-control {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.professional-form .btn-primary {
+  background-color: #007bff;
+  border: none;
+}
+
+.professional-form .btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.professional-form .btn-success {
+  background-color: #28a745;
+  border: none;
+}
+
+.professional-form .btn-success:hover {
+  background-color: #1e8c3b;
+}
+
+.cont {
+  background-image: url('/assets/bg.jpeg');
+  width: 100%;
+  min-height: 100vh;
+  background-size: cover;
+
+  background-repeat: repeat-y;
+
+}
+
+.rVetData {
+  background-color: #67a89c;
+}
+
+
+#upload {
+  opacity: 0;
+}
+
+#upload-label {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+}
+
+.image-area {
+  border: 2px dashed rgba(74, 74, 74, 0.7);
+  padding: 1rem;
+  position: relative;
+}
+
+.image-area::before {
+  content: "Uploaded image result";
+  color: #000000;
+  font-weight: bold;
+  text-transform: uppercase;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.8rem;
+  z-index: 1;
+}
+
+.image-area img {
+  z-index: 2;
+  position: relative;
+}

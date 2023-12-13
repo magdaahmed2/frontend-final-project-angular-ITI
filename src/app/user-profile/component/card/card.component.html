@@ -1,0 +1,331 @@
+<div class="container">
+<div class="row justify-content-center mb-3 body">
+  <div class="col-md-12 col-xl-12">
+    <div class="card shadow-0 border rounded-3">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
+            <div class="bg-image hover-zoom ripple rounded ripple-surface">
+              <img [src]="generateImageUrl(pet.image)" height="200px" width="200px" />
+              <a href="#!">
+                <div class="hover-overlay">
+                  <div class="mask" style="background-color: rgba(253, 253, 253, 0.15)"></div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-6 col-xl-6">
+          
+              <h1 style="color: darkcyan">Type : {{ pet.type }}</h1>
+              <h3>category : {{ pet.category }}</h3>
+              <h4>For : {{ pet.operation }}</h4>
+
+           
+            <div class="mt-1 mb-0 text-muted small">
+              <span><span style="color: darkcyan; font-size: larger;">Gender : </span>{{ pet.gender }}</span>
+           <br>
+            
+         
+              <span style="color: darkcyan; font-size: larger;">age : {{ pet.age }} months</span> <br />
+         
+          </div>
+          </div>
+          <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
+            <div class="d-flex flex-row align-items-center mb-1">
+              <h4 class="mb-1 me-1">Price : {{ pet.price }} </h4>
+            </div>
+            <div class="d-flex flex-column mt-4">
+              
+
+              <button type="button"(click)="editFun(pet)" class="btn btn-sm mt-2 text-white" style="background-color: #13a7d1"
+                data-bs-toggle="modal" data-bs-target="#editModal">
+                Edit pet
+                <i class="fa fa-edit"></i>
+              </button>
+              <button type="button" style="background-color: #ce0000d8" class="btn btn-danger btn-sm mt-2"
+                data-bs-toggle="modal" data-bs-target="#deleteModal" >
+                Delete pet
+                <i class="fa fa-trash"></i>
+              </button>
+              
+              <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Confirm Message</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="alert alert-danger" role="alert">
+                        Are you sure that you want to delete the post?
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button data-bs-dismiss="modal"  type="button" class="btn btn-danger" (click)="deleteProduct(pet.id)">Confirm</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Your previous code (without form) -->
+<!-- Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog mt-1" style="width: 50%; max-width: none">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+          Edit your pet details
+        </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="formbold-main-wrapper pt-0">
+          <div class="formbold-form-wrapper pt-0">
+            <form [formGroup]="editPetForm" (ngSubmit)="submitForm()"enctype="multipart/form-data">
+              <!-- <div class="formbold-input-wrapp formbold-mb-3">
+                <label for="owner" class="formbold-form-label">
+                  owner
+                </label>
+
+                <div>
+                  <input type="text" name="owner" id="owner" formControlName="owner" placeholder="Your name"
+                    class="formbold-form-input form-control" />
+                </div>
+                <div *ngIf="
+                    editPetForm.controls['owner'].touched &&
+                    editPetForm.controls['owner'].invalid
+                  " id="owner" class="text-danger form-text">
+                  <small *ngIf="editPetForm.controls['owner'].errors?.['required']">
+                    this field is required
+                  </small>
+                  <small *ngIf="editPetForm.controls['owner'].errors?.['email']">
+                    Please enter a valid name format.
+                  </small>
+                </div>
+              </div> -->
+              <!--_________________ age___________________-->
+
+              <div class="formbold-mb-3">
+                <label for="PetAge" class="formbold-form-label">Pet Age (in monthes)</label>
+                <input type="number" name="age" id="PetAge" placeholder="ex:18"
+                  class="formbold-form-input form-control" formControlName="age" />
+                <div *ngIf="
+                    editPetForm.controls['age'].touched &&
+                    editPetForm.controls['age'].invalid
+                  " id="PetAge" class="text-danger form-text">
+                  <small *ngIf="editPetForm.controls['PetAge'].errors?.['required']">
+                    this field is required
+                  </small>
+                  <small *ngIf="editPetForm.controls['age'].errors?.['number']">
+                    Please enter a valid age .
+                  </small>
+                </div>
+              </div>
+              <!--_________________ type___________________-->
+
+              <div class="formbold-mb-3">
+                <label for="type" class="formbold-form-label">
+                  Pet Type
+                </label>
+                <input type="text" name="type" id="type" class="formbold-form-input form-control"
+                  formControlName="type" />
+                <div *ngIf="
+                    editPetForm.controls['type'].touched &&
+                    editPetForm.controls['type'].invalid
+                  " id="type" class="text-danger form-text">
+                  <small *ngIf="editPetForm.controls['type'].errors?.['required']">
+                    this field is required
+                  </small>
+                  <small *ngIf="editPetForm.controls['type'].errors?.['text']">
+                    Please enter a valid Known Type.
+                  </small>
+                </div>
+              </div>
+
+              <!--_________________ price___________________-->
+
+              <div class="formbold-mb-3">
+                <label for="price" class="formbold-form-label">
+                  Pet price
+                </label>
+                <input type="number" name="price" id="price" class="formbold-form-input form-control"
+                  formControlName="price" />
+                <div *ngIf="
+                    editPetForm.controls['price'].touched &&
+                    editPetForm.controls['price'].invalid
+                  " id="price" class="text-danger form-text">
+                  <small *ngIf="editPetForm.controls['price'].errors?.['required']">
+                    this field is required
+                  </small>
+                  <small *ngIf="editPetForm.controls['price'].errors?.['text']">
+                    Please enter a valid Known price.
+                  </small>
+                </div>
+              </div>
+                    <!--_________________ category___________________-->
+
+                    <div class="formbold-mb-3">
+                      <label for="category" class="formbold-form-label">
+                        Pet category
+                      </label>
+                      <select class="formbold-form-input form-control" id="occupation" formControlName="category">
+                        <option value="Dogs">Dogs</option>
+                        <option value="Cats">Cats</option>
+                        <option value="Birds">Birds</option>
+                        <option value="Animal For Breeding">Animal For Breeding</option>
+                      </select>
+                      <div *ngIf="
+                          editPetForm.controls['category'].touched &&
+                          editPetForm.controls['category'].invalid
+                        " id="category" class="text-danger form-text">
+                        <small *ngIf="editPetForm.controls['category'].errors?.['required']">
+                          this field is required
+                        </small>
+                        <small *ngIf="editPetForm.controls['category'].errors?.['text']">
+                          Please enter a valid Known category.
+                        </small>
+                      </div>
+                    </div>
+<!--_________________ gender___________________-->
+              <div class="formbold-mb-3">
+                <label class="formbold-form-label">Pet Gender</label>
+
+                <select class="formbold-form-input form-control" name="gender" id="occupation"
+                  formControlName="gender">
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
+                <div *ngIf="
+                    editPetForm.controls['gender'].touched &&
+                    editPetForm.controls['gender'].invalid
+                  " id="PetAge" class="text-danger form-text">
+                  <small *ngIf="editPetForm.controls['gender'].errors?.['required']">
+                    this field is required
+                  </small>
+                  <small *ngIf="editPetForm.controls['gender'].errors?.['email']">
+                    Please choose a valid Gender from above.
+                  </small>
+                </div>
+              </div>
+<!-- _________________________opeeration _______________ -->
+
+<div class="formbold-mb-3">
+  <label class="formbold-form-label">Pet operation</label>
+
+  <select class="formbold-form-input form-control" name="operation" id="occupation"
+    formControlName="operation">
+    <option value="sell">sell </option>
+    <option value="adopt">adopt</option>
+  </select>
+  <div *ngIf="
+      editPetForm.controls['operation'].touched &&
+      editPetForm.controls['operation'].invalid
+    " id="PetAge" class="text-danger form-text">
+    <small *ngIf="editPetForm.controls['operation'].errors?.['required']">
+      this field is required
+    </small>
+    <small *ngIf="editPetForm.controls['operation'].errors?.['email']">
+      Please choose a valid Gender from above.
+    </small>
+  </div>
+</div>
+<!-- _________________________image_______________ -->
+
+<div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
+  <input id="upload" type="file" (change)="get_imagPet($event)" formControlName="image" name="image" class="form-control border-0" />
+  <label id="upload-label" for="upload" class="font-weight-light text-muted">Choose file</label>
+  <div class="input-group-append">
+    <label for="upload" class="btn btn-light m-0 rounded-pill px-4">
+      <i class="fa fa-cloud-upload mr-2 text-muted"></i>
+      <small class="text-uppercase font-weight-bold text-muted">Choose file</small>
+    </label>
+  </div>
+</div>
+              <!-- Uploaded image -->
+              <p class="font-italic text-dark text-center">
+                The image uploaded will be rendered inside the box below.
+              </p>
+              <div class="image-area mt-4">
+                <img id="imageResult" src="{{ base64 }}" alt=""
+                  class="img-fluid rounded shadow-sm mx-auto d-block" />
+              </div>
+
+              <div class="formbold-checkbox-wrapper mt-2">
+                <label for="supportCheckbox" class="formbold-checkbox-label">
+                  <div class="formbold-relative">
+                    <!-- <input type="checkbox" id="supportCheckbox" class="formbold-input-checkbox" /> -->
+                    <div class="formbold-checkbox-inner">
+                      <span class="formbold-opacity-0">
+                        <svg width="11" height="8" viewBox="0 0 11 8" class="formbold-stroke-current" fill="none"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M8.81868 0.688604L4.16688 5.4878L2.05598 3.29507C1.70417 2.92271 1.1569 2.96409 0.805082 3.29507C0.453266 3.66742 0.492357 4.24663 0.805082 4.61898L3.30689 7.18407C3.54143 7.43231 3.85416 7.55642 4.16688 7.55642C4.47961 7.55642 4.79233 7.43231 5.02688 7.18407L10.0696 2.05389C10.4214 1.68154 10.4214 1.10233 10.0696 0.729976C9.71776 0.357624 9.17049 0.357625 8.81868 0.688604Z"
+                            fill="white" />
+                        </svg>
+                      </span>
+                    </div>
+                  </div>
+                  <!-- I agree to the defined
+                  <a href="#"> terms, conditions, and policies</a> -->
+                </label>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary" [disabled]="editPetForm.invalid" data-bs-dismiss="modal"
+          (click)="onUpdate()">
+          Save changes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<script>
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        $("#imageResult").attr("src", e.target.result);
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  $(function () {
+    $("#upload").on("change", function () {
+      readURL(input);
+    });
+  });
+
+  /*  ==========================================
+    SHOW UPLOADED IMAGE NAME
+* ========================================== */
+  var input = document.getElementById("upload");
+  var infoArea = document.getElementById("upload-label");
+
+  input.addEventListener("change", showFileName);
+  function showFileName(event) {
+    var input = event.srcElement;
+    var fileName = input.files[0].name;
+    infoArea.textContent = "File name: " + fileName;
+  }
+</script>

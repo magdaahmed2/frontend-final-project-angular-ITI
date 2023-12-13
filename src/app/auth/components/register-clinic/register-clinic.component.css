@@ -1,0 +1,44 @@
+/* form{
+    background-color: #f5e1dc;
+    padding: 20px;
+    border-radius: 10px solid  #da6274;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+    width: 60%;
+    margin: 0 auto;
+}
+input{
+    width: 80%;
+    margin: 0 auto;
+    
+}
+
+ */
+
+
+
+ 
+.gradient-custom-2 {
+   
+    background: #fccb90;
+    
+   
+    background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+    
+    
+    background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+    }
+    
+    @media (min-width: 768px) {
+    .gradient-form {
+        
+    height: 150vh !important;
+    }
+    }
+    @media (min-width: 769px) {
+    .gradient-custom-2 {
+    border-top-right-radius: .3rem;
+    border-bottom-right-radius: .3rem;
+    }
+    } 

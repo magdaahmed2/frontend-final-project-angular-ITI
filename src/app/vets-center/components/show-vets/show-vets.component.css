@@ -1,0 +1,130 @@
+:root {
+  --blue: #14d0f0e6;
+  --pink: rgba(255, 131, 195, 0.4);
+  --white: rgba(255, 255, 255, 0.9);
+}
+
+body {
+  font: 100% system-ui, sans-serif;
+  box-sizing: border-box;
+  overflow: hidden;
+  margin: 0;
+}
+
+.background {
+  background-image: url(/assets/bg.png);
+
+}
+
+.background-texture {
+  background: linear-gradient(to top,
+      rgba(231, 158, 74, 0.463),
+      rgba(206, 206, 206, 0.9));
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+}
+
+.header {
+  width: 100%;
+  height: 80px;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.left-content {
+  width: 40vw;
+  padding-left: 40px;
+}
+
+.stay-home {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5rem;
+  margin-bottom: 0;
+  color: #8b64b4;
+}
+
+h1 {
+  margin: 0 0 1rem 0;
+  font-weight: 900;
+  font-size: 4.5rem;
+  text-transform: uppercase;
+  color: #3b365e;
+}
+
+.para {
+  color: #3b365ecb;
+}
+
+button {
+  padding: 0.9rem 1.2rem;
+  border-radius: 25px;
+  background-color: var(--blue);
+  border: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  font-size: 1rem;
+  color: var(--white);
+  cursor: pointer;
+}
+
+
+.hero {
+
+  /* background-image: url(/assets/bg.jpeg); */
+  background-image: url(/assets/vet_hero.jpg);
+  background-repeat: no-reapeat;
+  background-size: cover;
+  background-position: center;
+  text-align: left;
+  padding: 100px;
+  height: 70vh;
+  width: 100%;
+  background-repeat: repeat-y;
+}
+
+.hero-content {
+  padding: 100px;
+  margin-inline: auto;
+}
+
+.hero-title {
+  font-size: 60px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  text-transform: upperCase;
+  color: #c25452;
+  padding-bottom: 20px;
+}
+
+.hero-description {
+  font-size: 30px;
+  margin-bottom: 60px;
+}
+
+.hero-button {
+  background-color: #ff6600;
+  padding: 20px;
+  margin-top: 30px;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 10px;
+  text-transform: uppercase;
+  font-size: 24px;
+  font-weight: bold;
+  border: none;
+  transition: background-color 2s ease;
+  cursor: pointer;
+}
+
+.hero-button:hover {
+  background-color: orange;
+}

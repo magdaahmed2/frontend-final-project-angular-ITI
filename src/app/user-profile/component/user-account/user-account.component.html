@@ -1,0 +1,436 @@
+<div class="container-fluid">
+  <div class="container mt-4">
+    <div class="row">
+  
+  <!-- Modal for updating the user data -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title" id="exampleModalLongTitle">Update User Information</h5>
+          <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="userUpdateForm" (ngSubmit)="onUpdateUser()">
+            <!-- Name -->
+            <div class="form-group">
+              <label for="name">Name:</label>
+              <input type="text" id="name" class="form-control" formControlName="name" />
+            </div>
+  
+            <!-- Email -->
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="email" id="email" class="form-control" formControlName="email" />
+            </div>
+  
+            <!-- Old Password -->
+            <div class="form-group">
+              <label for="oldPassword">Old Password:</label>
+              <input type="password" id="oldPassword" class="form-control" formControlName="old_password" />
+            </div>
+  
+            <!-- New Password -->
+            <div class="form-group">
+              <label for="newPassword">New Password:</label>
+              <input type="password" id="newPassword" class="form-control" formControlName="password" />
+            </div>
+  
+            <!-- Phone Number -->
+            <div class="form-group">
+              <label for="phoneNumber">Phone Number:</label>
+              <input type="tel" id="phoneNumber" class="form-control" formControlName="phone" />
+            </div>
+  
+        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" [disabled]="userUpdateForm.invalid">save changes</button>
+        </div>
+      </form>
+    </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- END OF Modal for updating the user data -->
+       
+  </div>
+  <div class="container">
+    <div class="main-body">
+    
+          
+    
+          <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+              <div class="card " style="background-color: #ffebcc9c;">
+                <div class="card-body">
+                  <div class="d-flex flex-column align-items-center text-center">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXdCFjPx2aDjr7oyFIMKmVKwEIkATVQxxPj1F8ITu1Lg&s" alt="Admin" class="rounded-circle" width="150">
+                 
+                  </div>
+                </div>
+              </div>
+              <div class="card mt-3 " >
+                <ul class="list-group list-group-flush" >
+                  <!-- <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap" style="background-color: #ffebcc9c;">
+                    <a href="#" class="btn btn-primary">view</a>
+                    <span class="text-secondary">View Appointments</span>
+                  </li> -->
+                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap" style="background-color: #ffebcc9c;">
+                    <button
+                    type="button"
+                    class="btn btn-success  me-5"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                  
+                  >
+                   ADD <i class="fa-solid fa-cat fa-2xs"></i>
+                  </button>                  <span class="text-secondary"> Add a new Pet</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap" style="background-color: #ffebcc9c;">
+                    <button
+                    type="button"
+                    class="btn btn-secondary  me-5"
+
+                  
+                  >
+                   <a class="text-white" href="/myPets">my pets</a> <i class="fa-solid fa-cat fa-2xs"></i>
+                  </button>                  <span class="text-secondary"> Show your pets</span>
+                  </li>
+  
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="card mb-3 " style="background-color: #ffebcc9c;">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Name</h6>
+                    </div>
+                    <div class="col-sm-9 ">
+                      <p>{{userData.name}}</p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Email</h6>
+                    </div>
+                    <div class="col-sm-9 ">
+                      <p>Email:{{userData.email}}</p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Phone</h6>
+                    </div>
+                    <div class="col-sm-9 ">
+                      <p>Phone: {{userData.phone}}</p>                  </div>
+                  </div>
+                  <hr>
+                  
+             
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                        Update My Data
+                      </button>                  </div>
+                  </div>
+                  
+                </div>
+                
+              </div>
+              
+  
+              <div class="col-md-8 mt-2 mb-5 pb-5 " style="background-color: #ffebcc9c; border-radius: 10px; border: 1px solid #CFC5B6;">
+                <h2>Order History</h2>
+                <table class="table" style="color: #ffebcc9c;">
+                  <thead>
+                      <tr>
+                          <th style="background-color: #ffebcc9c;">Order ID</th>
+                          <th style="background-color: #ffebcc9c;">Order Date</th>
+                          <th style="background-color: #ffebcc9c;">Total Price</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let order of userOrders">
+                          <td style="background-color: #ffebcc9c;">{{order.id}}</td>
+                          <td style="background-color: #ffebcc9c;">{{order.created_at| date:'yyyy-MM-dd '}}</td>
+                          <td style="background-color: #ffebcc9c;">${{order.total_price}}</td>
+                      </tr>
+                      <!-- Add more order history rows here -->
+                  </tbody>
+              </table>
+              
+            </div>
+  
+  
+  
+            </div>
+          </div>
+  
+        </div>
+    </div>
+  
+  
+   
+  </div>
+  </div>
+  
+  <!-- Modal pet-->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog mt-1" style="width: 50%; max-width: none">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+            Add your pet details
+          </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="formbold-main-wrapper pt-0">
+            <div class="formbold-form-wrapper pt-0">
+              <form [formGroup]="addPetForm" (ngSubmit)="submitForm()"enctype="multipart/form-data">
+                <!-- <div class="formbold-input-wrapp formbold-mb-3">
+                  <label for="owner" class="formbold-form-label">
+                    owner
+                  </label>
+  
+                  <div>
+                    <input type="text" name="owner" id="owner" formControlName="owner" placeholder="Your name"
+                      class="formbold-form-input form-control" />
+                  </div>
+                  <div *ngIf="
+                      addPetForm.controls['owner'].touched &&
+                      addPetForm.controls['owner'].invalid
+                    " id="owner" class="text-danger form-text">
+                    <small *ngIf="addPetForm.controls['owner'].errors?.['required']">
+                      this field is required
+                    </small>
+                    <small *ngIf="addPetForm.controls['owner'].errors?.['email']">
+                      Please enter a valid name format.
+                    </small>
+                  </div>
+                </div> -->
+                <!--_________________ age___________________-->
+  
+                <div class="formbold-mb-3">
+                  <label for="PetAge" class="formbold-form-label">Pet Age (in monthes) </label>
+                  <input type="number" name="age" id="PetAge" placeholder="ex:18"
+                    class="formbold-form-input form-control" formControlName="age" />
+                  <div *ngIf="
+                      addPetForm.controls['age'].touched &&
+                      addPetForm.controls['age'].invalid
+                    " id="PetAge" class="text-danger form-text">
+                    <small *ngIf="addPetForm.controls['PetAge'].errors?.['required']">
+                      this field is required
+                    </small>
+                    <small *ngIf="addPetForm.controls['age'].errors?.['number']">
+                      Please enter a valid age .
+                    </small>
+                  </div>
+                </div>
+                <!--_________________ type___________________-->
+  
+                <div class="formbold-mb-3">
+                  <label for="type" class="formbold-form-label">
+                    Pet Type
+                  </label>
+                  <input type="text" name="type" id="type" class="formbold-form-input form-control"
+                    formControlName="type" />
+                  <div *ngIf="
+                      addPetForm.controls['type'].touched &&
+                      addPetForm.controls['type'].invalid
+                    " id="type" class="text-danger form-text">
+                    <small *ngIf="addPetForm.controls['type'].errors?.['required']">
+                      this field is required
+                    </small>
+                    <small *ngIf="addPetForm.controls['type'].errors?.['text']">
+                      Please enter a valid Known Type.
+                    </small>
+                  </div>
+                </div>
+  
+                <!--_________________ price___________________-->
+  
+                <div class="formbold-mb-3">
+                  <label for="price" class="formbold-form-label">
+                    Pet price
+                  </label>
+                  <input type="number" name="price" id="price" class="formbold-form-input form-control"
+                    formControlName="price" />
+                  <div *ngIf="
+                      addPetForm.controls['price'].touched &&
+                      addPetForm.controls['price'].invalid
+                    " id="price" class="text-danger form-text">
+                    <small *ngIf="addPetForm.controls['price'].errors?.['required']">
+                      this field is required
+                    </small>
+                    <small *ngIf="addPetForm.controls['price'].errors?.['text']">
+                      Please enter a valid Known price.
+                    </small>
+                  </div>
+                </div>
+                      <!--_________________ category___________________-->
+  
+                      <div class="formbold-mb-3">
+                        <label for="category" class="formbold-form-label">
+                          Pet category
+                        </label>
+                        <select class="formbold-form-input form-control" id="occupation"  formControlName="category">
+                          <option value="Dogs">Dogs</option>
+                          <option value="Cats">Cats</option>
+                          <option value="Birds">Birds</option>
+                          <option value="Animal For Breeding">Animal For Breeding</option>
+                        </select>
+                        <div *ngIf="
+                            addPetForm.controls['category'].touched &&
+                            addPetForm.controls['category'].invalid
+                          " id="category" class="text-danger form-text">
+                          <small *ngIf="addPetForm.controls['category'].errors?.['required']">
+                            this field is required
+                          </small>
+                          <small *ngIf="addPetForm.controls['category'].errors?.['text']">
+                            Please enter a valid Known category.
+                          </small>
+                        </div>
+                      </div>
+  <!--_________________ gender___________________-->
+                <div class="formbold-mb-3">
+                  <label class="formbold-form-label">Pet Gender</label>
+  
+                  <select class="formbold-form-input form-control" name="gender" id="occupation"
+                    formControlName="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </select>
+                  <div *ngIf="
+                      addPetForm.controls['gender'].touched &&
+                      addPetForm.controls['gender'].invalid
+                    " id="PetAge" class="text-danger form-text">
+                    <small *ngIf="addPetForm.controls['gender'].errors?.['required']">
+                      this field is required
+                    </small>
+                    <small *ngIf="addPetForm.controls['gender'].errors?.['email']">
+                      Please choose a valid Gender from above.
+                    </small>
+                  </div>
+                </div>
+  <!-- _________________________opeeration _______________ -->
+  
+  <div class="formbold-mb-3">
+    <label class="formbold-form-label">Pet operation</label>
+  
+    <select class="formbold-form-input form-control" name="operation" id="occupation"
+      formControlName="operation">
+      <option value="sell">sell </option>
+      <option value="adopt">adopt</option>
+    </select>
+    <div *ngIf="
+        addPetForm.controls['operation'].touched &&
+        addPetForm.controls['operation'].invalid
+      " id="PetAge" class="text-danger form-text">
+      <small *ngIf="addPetForm.controls['operation'].errors?.['required']">
+        this field is required
+      </small>
+      <small *ngIf="addPetForm.controls['operation'].errors?.['email']">
+        Please choose a valid Gender from above.
+      </small>
+    </div>
+  </div>
+  <!-- _________________________image_______________ -->
+  
+  <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
+    <input id="upload" type="file" (change)="get_imagPet($event)" formControlName="image" name="image" class="form-control border-0" />
+    <label id="upload-label" for="upload" class="font-weight-light text-muted">Choose file</label>
+    <div class="input-group-append">
+      <label for="upload" class="btn btn-light m-0 rounded-pill px-4">
+        <i class="fa fa-cloud-upload mr-2 text-muted"></i>
+        <!-- <small class="text-uppercase font-weight-bold text-muted">Choose file</small> -->
+      </label>
+    </div>
+  </div>
+                <!-- Uploaded image -->
+                <p class="font-italic text-dark text-center">
+                  The image uploaded will be rendered inside the box below.
+                </p>
+                <div class="image-area mt-4">
+                  <img id="imageResult" src="{{ petAddBase64 }}" alt=""
+                    class="img-fluid rounded shadow-sm mx-auto d-block" />
+                </div>
+  
+                <div class="formbold-checkbox-wrapper mt-2">
+                  <label for="supportCheckbox" class="formbold-checkbox-label">
+                    <div class="formbold-relative">
+                      <!-- <input type="checkbox" id="supportCheckbox" class="formbold-input-checkbox" /> -->
+                      <div class="formbold-checkbox-inner">
+                        <span class="formbold-opacity-0">
+                          <svg width="11" height="8" viewBox="0 0 11 8" class="formbold-stroke-current" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                              d="M8.81868 0.688604L4.16688 5.4878L2.05598 3.29507C1.70417 2.92271 1.1569 2.96409 0.805082 3.29507C0.453266 3.66742 0.492357 4.24663 0.805082 4.61898L3.30689 7.18407C3.54143 7.43231 3.85416 7.55642 4.16688 7.55642C4.47961 7.55642 4.79233 7.43231 5.02688 7.18407L10.0696 2.05389C10.4214 1.68154 10.4214 1.10233 10.0696 0.729976C9.71776 0.357624 9.17049 0.357625 8.81868 0.688604Z"
+                              fill="white" />
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+                    <!-- I agree to the defined -->
+                    <!-- <a href="#"> terms, conditions, and policies</a> -->
+                  </label>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Close
+          </button>
+          <button type="button" class="btn btn-primary" [disabled]="addPetForm.invalid" data-bs-dismiss="modal"
+            (click)="onAddPet()">
+            Save changes
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  <script>
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+  
+        reader.onload = function (e) {
+          $("#imageResult").attr("src", e.target.result);
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+  
+    $(function () {
+      $("#upload").on("change", function () {
+        readURL(input);
+      });
+    });
+  
+    /*  ==========================================
+      SHOW UPLOADED IMAGE NAME
+  * ========================================== */
+    var input = document.getElementById("upload");
+    var infoArea = document.getElementById("upload-label");
+  
+    input.addEventListener("change", showFileName);
+    function showFileName(event) {
+      var input = event.srcElement;
+      var fileName = input.files[0].name;
+      infoArea.textContent = "File name: " + fileName;
+    }
+  </script>

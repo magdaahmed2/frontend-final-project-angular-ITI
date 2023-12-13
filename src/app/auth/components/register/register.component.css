@@ -1,0 +1,45 @@
+.loginbackground {
+  background-image: url('/assets/bg.png');
+  /* height: 80vh; */
+  background-size: cover;
+  background-position: center;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  background-repeat: repeat-y;
+}
+
+
+
+
+
+.gradient-custom-2 {
+
+  background: #fccb90;
+
+
+  background: -webkit-linear-gradient(to right, #FCF2E9, #FF8864, #A46856, #56423C);
+
+
+  background: linear-gradient(to right,
+  #CFCFC1,
+  #A0AD9F,
+  #728B85,
+  #4B6A6F
+  );
+}
+
+@media (min-width: 768px) {
+  .gradient-form {
+    height: 150vh !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .gradient-custom-2 {
+    border-top-right-radius: .3rem;
+    border-bottom-right-radius: .3rem;
+  }
+}

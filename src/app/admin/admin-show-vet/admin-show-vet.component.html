@@ -1,0 +1,555 @@
+
+<div class="body">
+    <div class="container mt-0">
+      <h1 class="text-center fs-1 fw-bold pt-3" style="color: #4b6a6f">
+        Your Centers
+      </h1>
+  
+      <div class="main-body pt-3">
+        <div class="row gutters-sm">
+          <div class="col-md-3 mb-3">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex flex-column align-items-center text-center">
+                  <img
+                    src="{{ logopath }}{{ vets.logo }}"
+                    alt="Admin"
+                    class="rounded-circle"
+                    width="100"
+                  />
+                  <div class="mt-3">
+                    <h4>{{ vets.name }}</h4>
+                    <!-- start modal approve -->
+                    <td rejectModalToggle>
+                      <button
+                        class="btn btn-success"
+                        [attr.data-bs-target]="'#acceptModalToggle' + vets.id"
+                        data-bs-toggle="modal"
+                        *ngIf="
+                          vets.status == 'unapproved' || vets.status == 'pending'
+                        "
+                      >
+                        Accept
+                      </button>
+  
+                      <!-- start modal -->
+                      <div
+                        class="modal fade"
+                        id="acceptModalToggle{{ vets.id }}"
+                        aria-hidden="true"
+                        aria-labelledby="exampleModalToggleLabel"
+                        tabindex="-1"
+                      >
+                        <div class="modal-dialog modal-dialog-centered">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h1
+                                class="modal-title fs-5"
+                                id="exampleModalToggleLabel"
+                              >
+                                Approve Vet Data
+                              </h1>
+                              <button
+                                type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                              ></button>
+                            </div>
+                            <div class="modal-body">
+                              We will send Approve Status to your customer User
+                              profile
+                            </div>
+                            <div class="modal-footer">
+                              <button
+                                class="btn btn-success"
+                                data-bs-target="#acceptModalToggle2"
+                                data-bs-toggle="modal"
+                                (click)="approve(vets.id)"
+                              >
+                                Done
+                              </button>
+                              <button
+                                class="btn btn-danger"
+                                data-bs-target="#exampleModalToggle2"
+                                data-bs-dismiss="modal"
+                              >
+                                Cancel
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="modal fade"
+                        id="acceptModalToggle2"
+                        aria-hidden="true"
+                        aria-labelledby="exampleModalToggleLabel2"
+                        tabindex="-1"
+                      >
+                        <div class="modal-dialog modal-dialog-centered">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h1
+                                class="modal-title fs-5"
+                                id="exampleModalToggleLabel2"
+                              >
+                                Done
+                              </h1>
+                              <button
+                                type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                              ></button>
+                            </div>
+                            <div class="modal-body">
+                              Data Approved Successfuly
+                            </div>
+                            <div class="modal-footer">
+                              <button
+                                class="btn btn-primary"
+                                data-bs-dismiss="modal"
+                              >
+                                close
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- end modal -->
+                    </td>
+                    <!-- end modal approve -->
+                    <!-- start modal approve -->
+                    <td rejectModalToggle>
+                      <button
+                        class="btn btn-danger"
+                        [attr.data-bs-target]="'#rejectModalToggle' + vets.id"
+                        data-bs-toggle="modal"
+                        *ngIf="
+                          vets.status == 'approved' || vets.status == 'pending'
+                        "
+                      >
+                        Unapprove
+                      </button>
+  
+                      <!-- start modal -->
+                      <div
+                        class="modal fade"
+                        id="rejectModalToggle{{ vets.id }}"
+                        aria-hidden="true"
+                        aria-labelledby="exampleModalToggleLabel"
+                        tabindex="-1"
+                      >
+                        <div class="modal-dialog modal-dialog-centered">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h1
+                                class="modal-title fs-5"
+                                id="exampleModalToggleLabel"
+                              >
+                                Unpprove Vet Data
+                              </h1>
+                              <button
+                                type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                              ></button>
+                            </div>
+                            <div class="modal-body">
+                              We will send Unpprove Status to your customer User
+                              profile
+                            </div>
+                            <div class="modal-footer">
+                              <button
+                                class="btn btn-success"
+                                data-bs-target="#rejectModalToggle2"
+                                data-bs-toggle="modal"
+                                (click)="reject(vets.id)"
+                              >
+                                Done
+                              </button>
+                              <button
+                                class="btn btn-danger"
+                                data-bs-target="#exampleModalToggle2"
+                                data-bs-dismiss="modal"
+                              >
+                                Cancel
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="modal fade"
+                        id="rejectModalToggle2"
+                        aria-hidden="true"
+                        aria-labelledby="exampleModalToggleLabel2"
+                        tabindex="-1"
+                      >
+                        <div class="modal-dialog modal-dialog-centered">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h1
+                                class="modal-title fs-5"
+                                id="exampleModalToggleLabel2"
+                              >
+                                Done
+                              </h1>
+                              <button
+                                type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                              ></button>
+                            </div>
+                            <div class="modal-body">
+                              Data Unpproved Successfuly
+                            </div>
+                            <div class="modal-footer">
+                              <button
+                                class="btn btn-primary"
+                                data-bs-dismiss="modal"
+                              >
+                                close
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- end modal -->
+                    </td>
+                    <!-- end modal unapprove -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-8 ms-3">
+            <div class="card mb-3">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Owner Name</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">{{ userData.name }}</div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Address</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    {{ vets.street_address }}
+                  </div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Phone</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">(239) 816-9029</div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">governorate</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    {{ vets.governorate }}
+                  </div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">open at</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    {{ vets.open_at }}
+                  </div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">close at</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    {{ vets.close_at }}
+                  </div>
+                </div>
+                <hr />
+                <div id="license">
+                  <div class="row" *ngIf="vets.status == 'approved'">
+                    <div class="col-sm-3 pt-5">
+                      <h6 class="mb-0 align-middle">license</h6>
+                    </div>
+                    <div class="col-sm-9 text-success">
+                      <div class="image-container">
+                        <img
+                          src="{{ logopath }}{{ vets.license }}"
+                          alt="Admin"
+                          style="width: 100px"
+                          class="enlarge-on-hover"
+                        />
+                        <p>Approved</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row" *ngIf="vets.status == 'unapproved'">
+                    <div class="col-sm-3 pt-5">
+                      <h6 class="mb-0 align-middle">license</h6>
+                    </div>
+                    <div class="col-sm-9 text-danger">
+                      <div class="image-container">
+                        <img
+                          src="{{ logopath }}{{ vets.license }}"
+                          alt="Admin"
+                          style="width: 100px"
+                          class="enlarge-on-hover"
+                        />
+                        <p>Unapproved</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row" *ngIf="vets.status == 'pending'">
+                    <div class="col-sm-3 pt-5">
+                      <h6 class="mb-0 align-middle">license</h6>
+                    </div>
+                    <div class="col-sm-9 text-warning">
+                      <div class="image-container">
+                        <img
+                          src="{{ logopath }}{{ vets.license }}"
+                          alt="Admin"
+                          style="width: 100px"
+                          class="enlarge-on-hover"
+                        />
+                        <p>Pending</p>
+                      </div>
+                    </div>
+                  </div>
+                  <hr />
+                </div>
+                <div id="tax_record">
+                  <div class="row" *ngIf="vets.status == 'approved'">
+                    <div class="col-sm-3 pt-5">
+                      <h6 class="mb-0">Tax record</h6>
+                    </div>
+                    <div class="col-sm-9 text-success">
+                      <div class="image-container">
+                        <img
+                          src="{{ logopath }}{{ vets.tax_record }}"
+                          alt="Admin"
+                          style="width: 100px"
+                          class="enlarge-on-hover"
+                        />
+                        <p>Approved</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row" *ngIf="vets.status == 'unapproved'">
+                    <div class="col-sm-3 pt-5">
+                      <h6 class="mb-0">Tax record</h6>
+                    </div>
+                    <div class="col-sm-9 text-danger">
+                      <div class="image-container">
+                        <img
+                          src="{{ logopath }}{{ vets.tax_record }}"
+                          alt="Admin"
+                          style="width: 100px"
+                          class="enlarge-on-hover"
+                        />
+                        <p>Unapproved</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row" *ngIf="vets.status == 'pending'">
+                    <div class="col-sm-3 pt-5">
+                      <h6 class="mb-0">Tax record</h6>
+                    </div>
+                    <div class="col-sm-9 text-warning fw-bold">
+                      <div class="image-container">
+                        <img
+                          src="{{ logopath }}{{ vets.tax_record }}"
+                          alt="Admin"
+                          style="width: 100px"
+                          class="enlarge-on-hover"
+                        />
+                        <p>Pending...</p>
+                      </div>
+                    </div>
+                  </div>
+                  <hr />
+                </div>
+                <div id="commercial_record">
+                  <div class="row" *ngIf="vets.status == 'approved'">
+                    <div class="col-sm-3 pt-5">
+                      <h6 class="mb-0">Commercial record</h6>
+                    </div>
+                    <div class="col-sm-9 text-success">
+                      <div class="image-container">
+                        <img
+                          src="{{ logopath }}{{ vets.commercial_record }}"
+                          alt="Admin"
+                          style="width: 100px"
+                          class="enlarge-on-hover"
+                        />
+                        <p>Approved</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row" *ngIf="vets.status == 'unapproved'">
+                    <div class="col-sm-3 pt-5">
+                      <h6 class="mb-0">Commercial record</h6>
+                    </div>
+                    <div class="col-sm-9 text-danger">
+                      <div class="image-container">
+                        <img
+                          src="{{ logopath }}{{ vets.commercial_record }}"
+                          alt="Admin"
+                          style="width: 100px"
+                          class="enlarge-on-hover"
+                        />
+                        <p>Unapproved</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row" *ngIf="vets.status == 'pending'">
+                    <div class="col-sm-3 pt-5">
+                      <h6 class="mb-0">Commercial record</h6>
+                    </div>
+                    <div class="col-sm-9 text-warning fw-bold">
+                      <div class="image-container">
+                        <img
+                          src="{{ logopath }}{{ vets.commercial_record }}"
+                          alt="Admin"
+                          style="width: 100px"
+                          class="enlarge-on-hover"
+                        />
+                        <p>Pending...</p>
+                      </div>
+                    </div>
+                  </div>
+                  <hr />
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div
+                      class="accordion accordion-flush"
+                      id="accordionFlushExample"
+                    >
+                      <div class="accordion-item">
+                        <h2 class="accordion-header">
+                          <button
+                            class="accordion-button collapsed"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapseOne"
+                            aria-expanded="false"
+                            aria-controls="flush-collapseOne"
+                          >
+                            Doctors
+                          </button>
+                        </h2>
+                        <div
+                          id="flush-collapseOne"
+                          class="accordion-collapse collapse"
+                          data-bs-parent="#accordionFlushExample"
+                        >
+                          <div class="accordion-body">
+                            <div class="card user-card">
+                              <div class="card-header pb-0 pt-1">
+                                <h4>Doctors</h4>
+                              </div>
+                              <div class="row row-cols-1 row-cols-md-3 g-4">
+                                <div
+                                  class="col"
+                                  *ngFor="let dvets of vets.doctors"
+                                >
+                                  <div>
+                                    <div class="card-block pb-0">
+                                      <div class="user-image">
+                                        <img
+                                          [src]="
+                                            'http://localhost:8000/storage/' +
+                                            dvets.image
+                                          "
+                                          class="img-radius"
+                                          width="60"
+                                          alt="User-Profile-Image"
+                                        />
+                                      </div>
+                                      <h6 class="f-w-600 mp-0 pb-0">
+                                        {{ dvets.name }}
+                                      </h6>
+                                      <p class="text-black fw-400 mp-1 pb-1">
+                                        {{ dvets.experience }} Experience
+                                      </p>
+                                      <!-- Start Modal Delete -->
+  
+                                      <button
+                                        class="btn btn-danger mx-2"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#DeleteModaldoc"
+                                        (click)="deleteDoctor(vets.id, dvets.id)"
+                                      >
+                                        Delete
+                                      </button>
+                                      <div
+                                        class="modal fade"
+                                        id="DeleteModaldoc"
+                                        tabindex="-1"
+                                        aria-labelledby="exampleModalLabel"
+                                        aria-hidden="true"
+                                      >
+                                        <div class="modal-dialog">
+                                          <div class="modal-content">
+                                            <div class="modal-body">
+                                              <div
+                                                class="alert alert-warning alert-dismissible fade show"
+                                                role="alert"
+                                              >
+                                                are you sure that you want to
+                                                delete this doctor ?
+                                              </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button
+                                                type="button"
+                                                class="btn btn-secondary"
+                                                data-bs-dismiss="modal"
+                                              >
+                                                Close
+                                              </button>
+                                              <button
+                                                type="button"
+                                                class="btn btn-danger"
+                                                data-bs-dismiss="modal"
+                                                (click)="modeldeleteDoctor()"
+                                              >
+                                                confirme
+                                              </button>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <!-- End Modal Delete -->
+                                      <hr />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

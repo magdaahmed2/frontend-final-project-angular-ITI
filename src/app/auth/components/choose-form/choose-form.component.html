@@ -1,0 +1,51 @@
+
+<div class="background" style="min-height: 600px;">
+  <div class="row  ps-md-4 pe-md-4">
+    <div class="col-md-6 col-sm-12" style="margin-top: 100px; ">
+      <label
+        for="user"
+        class="createLabel  p-5  mb-2 text-white text-center client position-relative w-100"
+        style="border-radius: 20px; border: 1px solid rgb(166, 166, 166);"
+
+        [ngClass]="{'active': accountType === 'user'}"
+        
+      >
+        <h2 class="text-left text-center pe-xl-5" style="color: black">I'm a client </h2>
+        <input
+          style="top: 20px; right: 15px; width: 20px; height: 20px ; border: solid white; display: none;"
+          class="position-absolute"
+          type="radio"
+          name="accountType"
+          id="user"
+          value="user"
+          [(ngModel)]="accountType"
+          (change)="updateLabelState('user')"
+        />
+      </label>
+    </div>
+    <div class="col-md-6 col-sm-12" style="margin-top: 100px;">
+      <label
+        for="clinc"
+        class="createLabel  p-5 mb-2  text-white veternary position-relative w-100"
+        style="border-radius: 20px; border: 1px solid rgb(166, 166, 166)"
+        [ngClass]="{'active': accountType === 'clinc'}"
+      >
+        <h2 class="text-left text-center pe-xl-5" style="color: black;">Veterinary Clinics</h2>
+        <input
+          style="top:20px; right: 15px; width: 20px; height: 20px; display: none;"
+          class="position-absolute"
+          type="radio"
+          name="accountType"
+          id="clinc"
+          value="clinc"
+          [(ngModel)]="accountType"
+          (change)="updateLabelState('clinc')"
+        />
+      </label>
+    </div>
+  </div>
+
+
+  <app-register-clinic *ngIf="accountType == 'clinc'"></app-register-clinic>
+  <app-register *ngIf="accountType == 'user'"></app-register>
+  </div>

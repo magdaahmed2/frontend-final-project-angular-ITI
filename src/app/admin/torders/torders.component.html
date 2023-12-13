@@ -1,0 +1,77 @@
+
+<div class="container table-responsive py-5"> 
+    <h1> All Orders Created</h1>
+    <table class="table table-bordered table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Id </th>
+        
+          <th scope="col">Total Price</th>
+          <th scope="col">Created at</th>
+          <th scope="col">Updated at</th>
+          <th scope="col">user_name</th>
+  
+          <th scope="col"class="bg-danger">Delete</th>
+        </tr>
+        <div class="form-group has-search">
+          <span class="fa fa-search form-control-feedback"></span>
+          <input type="text"[(ngModel)]="searchText" class="form-control" placeholder="Search">
+        </div>
+      </thead>
+      <tbody>
+        <tr  *ngFor="let order of orders| paginate: { itemsPerPage: itemsPerPage, currentPage: p}|search:searchText">
+          <th scope="row">{{order.id}}</th>
+        
+          <td>{{order.total_price}}</td>
+          <td>{{ order.created_at | date: 'yyyy-MM-dd ' }}</td>
+          <td>{{ order.updated_at | date: 'yyyy-MM-dd ' }}</td>
+       
+          <td>{{order.user.name}}</td>
+         
+          <td class="text-danger p-1">  
+         <div>
+          <div class="flex-shrink-0 ms-2">
+    
+            <input
+              type="button"
+              value="Remove"
+             (click)=" deleteOrder(order.id) "
+              class="btn btn-outline-danger"
+              data-bs-toggle="modal" data-bs-target="#deleteModal"
+            />
+  
+          </div>
+          
+         </div>
+  
+         </td>
+  
+        </tr>
+        <div class="text-center" *ngIf="orders.length">
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+      </tbody>
+    </table>
+    </div>
+    
+    <!-- start modal for deleting -->
+      <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Confirm Message</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="alert alert-danger" role="alert">
+                          Are you sure that you want to delete the post?
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button data-bs-dismiss="modal"  type="button" class="btn btn-danger" (click)=" removeOrder()">Confirm</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+    <!-- end modal for deleting -->

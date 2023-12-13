@@ -1,0 +1,176 @@
+
+
+<section class="" >
+  <div class="container py-5 ">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-xl-10">
+        <div class="card rounded-3 text-black" style="background-color: #ffe1c9b4;">
+          <div class="row g-0">
+            <div class="col-lg-6">
+              <div class="card-body p-md-5 mx-md-4">
+
+                <div class="text-center">
+                  <img
+                  src="./assets/logof.png"
+                  style="width: 240px; margin-bottom: 25px; "
+                  alt="logo"
+                />
+                  <h4 class="mt-1 mb-5 pb-1">Clinic Registration</h4>
+                </div>
+
+                <form [formGroup]="registerclinc" (ngSubmit)="submitForm()" >
+
+                  <div class="form-outline mb-4">
+                    <label for="name_control" class="form-label">Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="name_control"
+      aria-describedby="name_help"
+      formControlName="name"
+    />
+    <div
+      *ngIf="
+      registerclinc.controls['name'].touched &&
+      registerclinc.controls['name'].invalid
+      "
+      id="name_help"
+      class="text-danger form-text"
+    >
+      <small *ngIf="registerclinc.controls['name'].errors?.['required']">
+        this field is required
+      </small>
+      <small *ngIf="registerclinc.controls['name'].errors?.['minlength']">
+        Min. length is 2
+      </small>
+    </div>
+                  </div>
+
+               
+
+                  <div class="form-outline mb-4">
+                    <label for="email" class="form-label"
+                    >email</label
+                  >
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    aria-describedby="description_help"
+                    rows="5"
+                    formControlName="email"
+                  >
+                  <div
+                    *ngIf="
+                    registerclinc.controls['email'].touched &&
+                    registerclinc.controls['email'].invalid
+                    "
+                    id="email"
+                    class="text-danger form-text"
+                  >
+                    <small *ngIf="registerclinc.controls['email'].errors?.['required']">
+                      this field is required
+                    </small>
+                    <small *ngIf="registerclinc.controls['email'].errors?.['pattern']">
+                      Please enter a valid email format.
+                    </small>
+                    
+                  </div>
+
+                  <div *ngIf="error" style="color: black;">
+                    <p class="text-danger form-text" style="display: inline;">{{ error }}</p>
+                    <a href="login" style="display: inline; color: black;">Want to login?</a>
+                  </div>
+                  
+                                    </div>
+                  
+
+                  <div class="form-outline mb-4">
+                    <label for="password" class="form-label"
+                    >password</label
+                  >
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    aria-describedby="description_help"
+                    rows="5"
+                    formControlName="password"
+                  >
+                  <div
+                    *ngIf="
+                    registerclinc.controls['password'].touched &&
+                    registerclinc.controls['password'].invalid
+                    "
+                    id="password"
+                    class="text-danger form-text"
+                  >
+                    <small *ngIf="registerclinc.controls['password'].errors?.['required']">
+                      this field is required
+                    </small>
+                    <small *ngIf="registerclinc.controls['password'].errors?.['password']">
+                      password must be more than 8 character
+
+                    </small>
+                    
+                  </div>
+                  </div>
+                  
+
+                  <div class="form-outline mb-4">
+                    <label for="phone" class="form-label">Phone</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="phone"
+                      aria-describedby="phone"
+                      formControlName="phone"
+                    />
+                    <div
+                      *ngIf="
+                        registerclinc.controls['phone'].touched &&
+                        registerclinc.controls['phone'].invalid
+                      "
+                      id="phone"
+                      class="text-danger form-text"
+                    >
+                      <small *ngIf="registerclinc.controls['phone'].errors?.['required']">
+                        Phone number is required
+                      </small>
+                      <small *ngIf="registerclinc.controls['phone'].errors?.['minlength']">
+                        Phone number should be at least 11 digits long
+                      </small>
+                      <small *ngIf="registerclinc.controls['phone'].errors?.['pattern']">
+                        Phone number should start with '0' and be 11 digits long
+                      </small>
+                    </div>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <button class="btn btn-success btn-block  fa-lg p-2 mb-3"
+                     type="submit" style="width: 100%;" [disabled]="registerclinc.invalid">Register</button><br>
+                   
+                  </div>
+                 
+                  <div class="d-flex align-items-center justify-content-center pb-4">
+                    <p class="mb-0 me-2"> have an account?</p>
+                    <button type="submit" class="btn btn-primary" ><a class="text-white" href="login">Sign In</a>
+                    </button>
+                  </div>
+                </form>
+
+              </div>
+            </div>
+            <div class="col-lg-6 d-flex align-items-center  "
+             style="background-image: url('./assets/veterinarian-clinic.png');
+              background-repeat: no-repeat; margin-top: 200px;">
+            </div>
+            
+            
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

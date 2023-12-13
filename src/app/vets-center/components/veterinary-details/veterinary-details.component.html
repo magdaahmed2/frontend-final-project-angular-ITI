@@ -1,0 +1,182 @@
+<div class="background">
+  <div class="container bootstrap snipvets bootdey pb-5">
+    <div class="row">
+      <div class="profile-nav col-md-3">
+        <div class="panel">
+          <div class="user-heading round">
+            <a href="#">
+              <img src="{{ logopath }}{{ vets.logo }}" alt="" />
+            </a>
+            <h1 class="fw-bold fs-4" style="color: #c2694e">{{ vets.name }}</h1>
+            <p class="text-black">{{ vets.governorate }}</p>
+            <button
+              type="button"
+              class="btn btn-success rounded-2 mb-2"
+              data-bs-toggle="modal"
+              data-bs-target="#AppModal"
+            >
+              Book Appointment
+            </button>
+            <div
+              class="modal fade"
+              id="AppModal"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog update-modal">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1
+                      class="modal-title fs-5 text-black"
+                      id="exampleModalLabel"
+                    >
+                      Get Appoointment
+                    </h1>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body text-black">
+                    <form [formGroup]="AppFom" enctype="multipart/form-data">
+                      <div class="alert alert-danger" role="alert">
+                        <p class="fs-6 text-black">
+                          our opining hours is <br />
+                          <span class="fs-5 fw-bold text-black"
+                            >{{ vets.open_at }} to {{ vets.close_at }}</span
+                          >
+                          <br />
+                          --- please enter appointment time at working hours ---
+                        </p>
+                      </div>
+                      <div class="form-group">
+                        <label for="name">Date</label>
+                        <input
+                          name="date"
+                          type="date"
+                          class="form-control"
+                          id="date"
+                          formControlName="date"
+                        />
+                      </div>
+                      <div class="form-group text-black fw-bold">
+                        <label for="time">Time</label>
+                        <input
+                          name="time"
+                          type="text"
+                          class="form-control"
+                          id="time"
+                          formControlName="time"
+                        />
+
+                        <small class="text-danger"
+                          >Please enter the date in this form HH:MM AM/PM</small
+                        >
+                      </div>
+                      <div class="form-group text-black fw-bold">
+                        <label for="pet_type">Type</label>
+                        <input
+                          name="pet_type"
+                          type="text"
+                          class="form-control"
+                          id="pet_type"
+                          step="1"
+                          formControlName="pet_type"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <button
+                          type="submit"
+                          class="btn btn-primary"
+                          data-bs-dismiss="modal"
+                          (click)="onAddAppoint()"
+                          [disabled]="AppFom.invalid"
+                        >
+                          Save changes
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- need some thing -->
+        </div>
+      </div>
+      <div class="profile-info col-md-9">
+        <div class="panel">
+          <div class="bio-graph-heading">
+            {{ vets.about }}
+          </div>
+          <div class="panel-body bio-graph-info">
+            <h1>Bio Graph</h1>
+            <div class="row">
+              <div class="bio-row">
+                <p class="fw-bold"><span>Name:</span>{{ vets.name }}</p>
+              </div>
+              <div class="bio-row">
+                <p class="fw-bold">
+                  <span>Address:</span>{{ vets.street_address }}
+                </p>
+              </div>
+              <div class="bio-row">
+                <p class="fw-bold"><span>Open At:</span>{{ vets.open_at }}</p>
+              </div>
+              <div class="bio-row">
+                <p class="fw-bold"><span>Close At:</span>{{ vets.close_at }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="m-0 d-flex ms-3">
+          <div class="row">
+            <div
+              class="col-sm-6 mb-3 mb-sm-0"
+              *ngFor="let doctor of vets.doctors; let odd = odd"
+            >
+              <div class="m-0">
+                <div class="card m-0 mt-4" [ngClass]="{ green: odd }">
+                  <div class="additional">
+                    <div class="user-card">
+                      <div class="level center">{{ doctor.name }}</div>
+                      <div></div>
+                      <div class="panel profile-nav">
+                        <div
+                          class="user-heading round mt-2"
+                          style="background: none; padding: 30px 10px 10px 10px"
+                        >
+                          <a href="#">
+                            <img
+                              src="{{ logopath }}storage/{{ doctor.image }}"
+                              alt=""
+                            />
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="general">
+                    <h3
+                      class="text-center align-center"
+                      style="margin-top: 60px"
+                    >
+                      About
+                    </h3>
+                    <p class="fs-5 fw-900">
+                      {{ doctor.experience }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

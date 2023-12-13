@@ -1,0 +1,87 @@
+<style>
+  .bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+
+  @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
+  }
+</style>
+
+
+<!-- Custom styles for this template -->
+
+
+<main>
+  <div class="background">
+    <div class="px-4 py-4 my-5 text-center">
+      <div class="main pt-5">
+        <!-- Another variation with a button -->
+        <div class="input-group">
+          <input [(ngModel)]="searchText" type="text" class="form-control" style="width: 600px;" >
+          <div class="input-group-append">
+              <button class="btn btn-secondary" type="button" style="background-color: #f26522; border-color:#f26522 ">
+              <i class="fa fa-search"></i>
+              </button>
+          </div>
+        </div>
+    </div>
+    <!-- <img class="d-block mx-auto mb-4" src="/assets/logomeshmesh.png" alt="" width="200" height="100"> -->
+    <h1 class="display-5 fw-bold p-4 ">Give<span style="color: #FF9831;"> Meshmesh</span> the care<br> it deserves</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4 pe-4 ps-4 pb-5">Meshmesh, your all-in-one solution for your pet .</p>
+     
+    </div>
+    </div></div>
+</main>
+
+<div class="b-example-divider"></div>
+
+<div class="container-fluid d-flex p-3">
+
+ 
+   <!-- supplies-list.component.html -->
+   <div class="container d-flex p-3">
+
+
+    <div class="col-md-9 ">
+  
+  
+        <div class="row product-list pt-5">
+            <div class="col-md-4 mb-4" *ngFor="let supply of allSupplies
+            | paginate: { itemsPerPage: itemsPerPage, currentPage: p }|search:searchText">
+                <section class=" card">
+                    <div class="pro-img-box" style="width: 100%; max-width: 350px;">
+                      <img [src]="generateImageUrl(supply.image)" style="width: 100%; height: 200px; object-fit: contain;" alt="" class="avatar-lg rounded" />
+                      <button>
+                      <a height="20" width="20" class="adtocart"(click)="addToCart(supply)">
+                        <i class="fa fa-shopping-cart"></i>
+                        </a></button>
+                    </div>
+  
+                    <div class="card-body text-center">
+                      <h3 class="card-title">
+                          <a href="#" class="pro-title "><h4>Name:{{ supply.name }}</h4></a>
+                      </h3>
+                      <h6 class="card-text ">Price: {{ supply.price }}</h6>
+                      <p class="card-text ">Description: {{ supply.description }}</p>
+                      <p class="card-text ">Category: {{ supply.category }}</p>
+                  </div>
+                  
+                </section>
+         
+        </div>
+  <div class="text-center" *ngIf="allSupplies.length">    
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+    </div>
+  </div>
+  </div>
+
+

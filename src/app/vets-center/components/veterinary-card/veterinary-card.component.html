@@ -1,0 +1,30 @@
+<section class="mb-3">
+  <div class="profile profile-wide">
+    <div class="profile__image mt-3">
+      <img src="{{ logopath }}{{ pet.logo }}" alt="Doggo" />
+    </div>
+    <div class="profile__info">
+      <h3>{{ pet.name }}</h3>
+      <p class="profile__info__extra">
+        <span class="fw-bold">Address:</span> {{ pet.street_address }}
+      </p>
+    </div>
+    <div class="profile__stats">
+      <p class="profile__stats__title">governorate</p>
+      <h5 class="profile__stats__info ps-4">{{ pet.governorate }}</h5>
+    </div>
+    <div class="profile__stats">
+      <p class="profile__stats__title">Open at</p>
+      <h5 class="profile__stats__info ps-4">{{ pet.open_at }} </h5>
+    </div>
+    <div class="profile__stats">
+      <p class="profile__stats__title">close at</p>
+      <h5 class="profile__stats__info ps-4">{{ pet.close_at }} </h5>
+    </div>
+    <div class="profile__cta">
+      <a class="btn btn-info button" type="button" (click)="showdetails(pet.id)"
+        >Show Center</a
+      >
+    </div>
+  </div>
+</section>
